@@ -1,14 +1,31 @@
 #include "common.h"
 
+int *allocIntArray(int n, bool c) {
+    int *v;
+
+    if(c == true) {
+        v = calloc(n, sizeof(int));
+    }
+    else {
+        v = malloc(n * sizeof(int));
+    }
+
+    if(v == NULL) {
+        errorMsg(MEM, "allocIntArray");
+    }
+
+    return v;
+}
+
 uchar *allocUCharArray(int n, bool c) {
     uchar *v;
 
     if(c == true) {
-        v = (uchar *)calloc(n, sizeof(uchar));
+        v = calloc(n, sizeof(uchar));
     }
     else {
-        v = (uchar *)malloc(n * sizeof(uchar));
-    }
+        v = malloc(n * sizeof(uchar));
+   }
 
     if(v == NULL) {
         errorMsg(MEM, "allocUCharArray");

@@ -1,5 +1,7 @@
-#ifndef _COMMON_H_
-#define _COMMON_H_
+/* common.h */
+
+#ifndef __COMMON_H__
+#define __COMMON_H__
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -13,7 +15,8 @@ typedef unsigned char uchar;
 typedef enum boolean {false, true} bool;
 
 /* Funções comuns */
+int *allocIntArray(int n, bool c); /* Aloca um vetor de inteiros */
 uchar *allocUCharArray(int n, bool c); /* Aloca um vetor de caracteres */
 void errorMsg(char *msg, char *f); /* Mostra mensagem de erro e sai */
 
-#endif
+#endif /* __COMMON_H__ */
