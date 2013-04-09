@@ -15,5 +15,12 @@ image.o: image.c
 common.o: common.c
 	$(CC) $(CFLAGS) common.c
 
+.PHONY: test clean
+test: test.o common.o image.o
+	$(CC) -o test test.o common.o image.o
+
+test.o: test.c
+	$(CC) $(CFLAGS) test.c
+
 clean:
-	rm -rf image *.o *~
+	rm -rf image test *.o *~

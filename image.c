@@ -3,11 +3,12 @@
  * Contém funções relacionadas à imagens
  */
 
-#include <limits.h>
 #include "common.h"
+#include <limits.h>
+#include <string.h>
 #include "image.h"
 
-/* Cria uma nova imagem */
+/* Cria uma nova imagem PGM */
 ImagePGM *newImage(int width, int height, int maxVal) {
     ImagePGM *new;
     
@@ -17,6 +18,7 @@ ImagePGM *newImage(int width, int height, int maxVal) {
         errorMsg(MEM, "newImage");
     }
 
+    /* Configura as propriedades da imagem */
     new->width = width;
     new->height = height;
     new->numEls = width * height;
@@ -33,7 +35,8 @@ ImagePGM *newImage(int width, int height, int maxVal) {
     return new;
 }
 
-/* Destrói uma imagem */
+
+/* Destrói uma imagem PGM */
 void delImage(ImagePGM **img) {
     ImagePGM *tmp;
 
@@ -49,8 +52,89 @@ void delImage(ImagePGM **img) {
 }
 
 
+/* Lê uma imagem PGM */
+ImagePGM *readImage(char *imgPath) {
+    char magicNumber[5], buffer[256];
+    uchar *vals;
+    int width, height, maxVal, i, n;
+    FILE *fp;
+    ImagePGM *img = NULL;
 
+    /* Abre o arquivo de imagem */
+    fp = fopen(imgPath, "rb");
+    if(fp == NULL) {
+        errorMsg(OPEN, "readImage");
+    }
+
+    /* Lê o número mágico */
+    fscanf(fp, "%s\n", magicNumber);
+
+    /* Trata a imagem como sendo P2 (formato texto) */
+    if(strcmp(magicNumber, "P2") == 0) {
+        fgets(buffer, 255, fp);
+        while(buffer[0] == '#') {
+            fgets(buffer, 255, fp);
+        }
+
+        /* Obtém a largura, altura e o maior brilho da imagem */
+        sscanf(buffer, "%d %d\n", &width, &height);
+        fgets(buffer, 255, fp);
+        sscanf(buffer, "%d\n", &maxVal);
+
+        /* Cria uma nova imagem na representação interna */
+        img = newImage(width, height, maxVal);
+
+        /* Lê os brilhos dos pixels da imagem */
+        n = width * height;
+        for(i = 0; i < n; i++) {
+            fscanf(fp, "%d", &(img->vals[i]));
+        }
+
+        fclose(fp);
+    }
+
+    /* Trata a imagem como sendo P5 (formato binário) */
+    else if(strcmp(magicNumber, "P5") == 0) {
+        fgets(buffer, 255, fp);
+        while(buffer[0] == '#') {
+            fgets(buffer, 255, fp);
+        }
+
+        /* Obtém a largura, altura e o maior brilho da imagem */
+        sscanf(buffer, "%d %d\n", &width, &height);
+        fgets(buffer, 255, fp);
+        sscanf(buffer, "%d\n", &maxVal);
+
+        n = width * height;
+        fgetc(fp);
+
+        vals = allocUCharArray(n, false);
+
+        /* Lê os brilhos dos pixels da imagem */
+        if(fread(vals, sizeof(uchar), n, fp) != 0);
+
+        fclose(fp);
+
+        /* Cria uma nova imagem na representação interna */
+        img = newImage(width, height, maxVal);
+
+        /* Passa os valores dos brilhos dos pixels para a estrutura da imagem */
+        for(i = 0; i < n; i++) {
+            img->vals[i] = (int)vals[i];
+        }
+        free(vals);
+    }
+    else {
+        fprintf(stderr, "A imagem de entrada deve ser P2 ou P5\n");
+        exit(EXIT_FAILURE);
+    }
+
+    return img;
+}
+
+/*
 int main(void) {
     printf("Foi\n");
     return EXIT_SUCCESS;
 }
+*/
