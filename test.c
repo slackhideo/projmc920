@@ -1,5 +1,4 @@
-#include "common.h"
-#include "image.h"
+#include "projlib.h"
 
 int main(int argc, char *argv[]) {
     uchar *v;

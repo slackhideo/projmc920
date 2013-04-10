@@ -1,26 +1,34 @@
 # Compilador
-CC=gcc
+CC = gcc
+AR = ar
 
 # Flags para o compilador
-CFLAGS=-Wall -c
+CFLAGS = -Wall -O2
 
-all: image
+# Diretório padrão para os cabeçalhos
+INCLUDE = include
 
-image: image.o common.o
-	$(CC) -o image image.o common.o
+# Diretório padrão para a biblioteca criada
+LIB = lib
+
+
+all: libproj
+
+libproj: $(LIB)/libproj.a
+
+$(LIB)/libproj.a: image.o common.o
+	$(AR) csr $(LIB)/libproj.a image.o common.o
+	@echo "Compilação da biblioteca completa"
 
 image.o: image.c
-	$(CC) $(CFLAGS) image.c
+	$(CC) -c $(CFLAGS) -I$(INCLUDE) image.c
 
 common.o: common.c
-	$(CC) $(CFLAGS) common.c
+	$(CC) -c $(CFLAGS) -I$(INCLUDE) common.c
 
-.PHONY: test clean
-test: test.o common.o image.o
-	$(CC) -o test test.o common.o image.o
+test: $(LIB)/libproj.a
+	$(CC) $(CFLAGS) -I$(INCLUDE) -L$(LIB) -o test test.c -lproj
 
-test.o: test.c
-	$(CC) $(CFLAGS) test.c
-
+.PHONY: clean
 clean:
-	rm -rf image test *.o *~
+	rm -rf $(LIB)/libproj.a test *.o *~

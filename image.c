@@ -56,7 +56,7 @@ void delImage(ImagePGM **img) {
 ImagePGM *readImage(char *imgPath) {
     char magicNumber[5], buffer[256];
     uchar *vals;
-    int width, height, maxVal, i, n;
+    int width, height, maxVal, i, n, lower = INT_MAX, higher = 0;
     FILE *fp;
     ImagePGM *img = NULL;
 
@@ -88,9 +88,20 @@ ImagePGM *readImage(char *imgPath) {
         n = width * height;
         for(i = 0; i < n; i++) {
             fscanf(fp, "%d", &(img->vals[i]));
+
+            /* Verifica se é o menor ou maior valor */
+            if(img->vals[i] < lower) {
+                lower = img->vals[i];
+            }
+            if(img->vals[i] > higher) {
+                higher = img->vals[i];
+            }
         }
 
         fclose(fp);
+
+        img->lower = lower;
+        img->higher = higher;
     }
 
     /* Trata a imagem como sendo P5 (formato binário) */
@@ -111,7 +122,7 @@ ImagePGM *readImage(char *imgPath) {
         vals = allocUCharArray(n, false);
 
         /* Lê os brilhos dos pixels da imagem */
-        if(fread(vals, sizeof(uchar), n, fp) != 0);
+        fread(vals, sizeof(uchar), n, fp);
 
         fclose(fp);
 
@@ -121,8 +132,19 @@ ImagePGM *readImage(char *imgPath) {
         /* Passa os valores dos brilhos dos pixels para a estrutura da imagem */
         for(i = 0; i < n; i++) {
             img->vals[i] = (int)vals[i];
+
+            /* Verifica se é o menor ou maior valor */
+            if(img->vals[i] < lower) {
+                lower = img->vals[i];
+            }
+            if(img->vals[i] > higher) {
+                higher = img->vals[i];
+            }
         }
         free(vals);
+
+        img->lower = lower;
+        img->higher = higher;
     }
     else {
         fprintf(stderr, "A imagem de entrada deve ser P2 ou P5\n");
@@ -132,9 +154,3 @@ ImagePGM *readImage(char *imgPath) {
     return img;
 }
 
-/*
-int main(void) {
-    printf("Foi\n");
-    return EXIT_SUCCESS;
-}
-*/
