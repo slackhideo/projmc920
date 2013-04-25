@@ -15,5 +15,5 @@ for IMG in *.jpg; do
     arq=$(basename "$IMG")
     ext="${arq##*.}"
     arqnome="${arq%.*}"
-    convert $IMG $arqnome.ppm
+    convert $IMG $arqnome.pgm
 done
