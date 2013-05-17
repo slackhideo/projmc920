@@ -16,7 +16,7 @@ Salve o arquivo.
 
 //Adiciona o arquivo que voce mexeu na lista de arquivos que devem ser
 sincronizados.
-git add <nomedoarquivo>
+git add <nomedoarquivo1> <nomedoarquivo2> <nomedoarquivo3>...
 
 //Salva no 'branch' atual
 git commit -m "Mensagem clara de sua alteração"
@@ -47,7 +47,7 @@ git checkout -b <nome>
 
 /*ALTERAÇÕES*/
 
-git add *		OU 		git add <nomedoarquivoalterado>
+git add *		OU 		git add <nomedoarquivoalterado1> <nomedoarquivoalterado2> <nomedoarquivoalterado3>...
 git commit -m "Mensagem explicando o commit"
 git checkout master
 git merge <nome>			//Se der erro, 'git pull' para pegar as
