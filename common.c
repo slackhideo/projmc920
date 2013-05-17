@@ -39,6 +39,10 @@ void errorMsg(char *msg, char *f) {
     exit(EXIT_FAILURE);
 }
 
+void teste3 {
+    pasjlfajçsdljfsd
+}
+
 void teste2 {
     printf("teste\n");
 }
