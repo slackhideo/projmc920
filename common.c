@@ -39,6 +39,9 @@ void errorMsg(char *msg, char *f) {
     exit(EXIT_FAILURE);
 }
 
+void teste4 {
+    printf("Mais testes, brow\n");
+}
 
 void teste3 {
     pasjlfajçsdljfsd
