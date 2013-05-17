@@ -1,6 +1,6 @@
 /*
  * image.c
- * Contém funções relacionadas à imagens
+ * Contém funções relacionadas a imagens
  */
 
 #include "common.h"
