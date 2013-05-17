@@ -54,3 +54,7 @@ void teste1 {
 void teste2 {
     printf("teste\n");
 }
+
+void teste5 {
+    printf ("eita mah!\n");
+}
