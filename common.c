@@ -51,6 +51,10 @@ void teste1 {
     return;
 }
 
+void testeUmEMeio {
+    askldjçasfdjklç
+}
+
 void teste2 {
     printf("teste\n");
 }
