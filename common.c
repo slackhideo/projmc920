@@ -1,5 +1,6 @@
 #include "common.h"
 
+/* Aloca memória para um vetor de inteiros com n elementos */
 int *allocIntArray(int n, bool c) {
     int *v;
 
@@ -17,6 +18,8 @@ int *allocIntArray(int n, bool c) {
     return v;
 }
 
+
+/* Aloca memória para um vetor de caracteres sem sinal com n elementos */
 uchar *allocUCharArray(int n, bool c) {
     uchar *v;
 
@@ -34,31 +37,9 @@ uchar *allocUCharArray(int n, bool c) {
     return v;
 }
 
+
+/* Função que exibe uma mensagem de erro */
 void errorMsg(char *msg, char *f) {
     fprintf(stderr, "Erro! %s em %s\n", msg, f);
     exit(EXIT_FAILURE);
-}
-
-void teste4 {
-    printf("Mais testes, brow\n");
-}
-
-void teste3 {
-    pasjlfajçsdljfsd
-}
-
-void teste1 {
-    return;
-}
-
-void testeUmEMeio {
-    askldjçasfdjklç
-}
-
-void teste2 {
-    printf("teste\n");
-}
-
-void teste5 {
-    printf ("eita mah!\n");
 }
