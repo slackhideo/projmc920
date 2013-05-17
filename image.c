@@ -9,7 +9,7 @@
 #include "image.h"
 
 /* Cria uma nova imagem PGM */
-ImagePGM *newImage(int width, int height, int maxVal) {
+ImagePGM *newImage(int width, int height, int depth, int maxVal) {
     ImagePGM *new;
     
     new = malloc(sizeof(ImagePGM));
@@ -21,6 +21,7 @@ ImagePGM *newImage(int width, int height, int maxVal) {
     /* Configura as propriedades da imagem */
     new->width = width;
     new->height = height;
+    new->depth = depth;
     new->numEls = width * height;
     new->maxVal = maxVal;
     new->vals = allocIntArray(width * height, false);
@@ -82,7 +83,7 @@ ImagePGM *readImage(char *imgPath) {
         sscanf(buffer, "%d\n", &maxVal);
 
         /* Cria uma nova imagem na representação interna */
-        img = newImage(width, height, maxVal);
+        img = newImage(width, height, 1, maxVal);
 
         /* Lê os brilhos dos pixels da imagem */
         n = width * height;
@@ -127,7 +128,7 @@ ImagePGM *readImage(char *imgPath) {
         fclose(fp);
 
         /* Cria uma nova imagem na representação interna */
-        img = newImage(width, height, maxVal);
+        img = newImage(width, height, 1, maxVal);
 
         /* Passa os valores dos brilhos dos pixels para a estrutura da imagem */
         for(i = 0; i < n; i++) {

@@ -6,6 +6,7 @@
 typedef struct {
     int width;
     int height;
+    int depth;
     int numEls;
     int maxVal;
     int *vals;
@@ -13,7 +14,7 @@ typedef struct {
     int higher;
 } ImagePGM;
 
-ImagePGM *newImage(int width, int height, int maxVal);
+ImagePGM *newImage(int width, int height, int depth, int maxVal);
 void delImage(ImagePGM **img);
 ImagePGM *readImage(char *imgPath);
 
