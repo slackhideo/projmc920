@@ -1,0 +1,27 @@
+Funções em C diferentes para:
+- normalização
+- convolução com banco de kernels multibandas
+- ativação por limiar
+- pooling com stride
+- gerar um banco de kernels multibandas com coeficientes aleatórios de
+média 0 e desvio padrão 1
+- Após o processamento da última camada, outra função transforma a imagem
+multibanda resultante em um vetor de atributos, como descrito nas aulas.
+
+imagem -> normalização -> { filtragem -> pooling -> normalização }x3
+
+alguns comentários:
+se retirar a normalização da ultima camada pode obter resultados melhores
+filtros na terceira camada costumam ter 3000 dimensões
+privilegie menos filtros nas primeiras camadas (64, 128, 256)
+
+
+funções:
+função que gera filtros aleatórios e salva (x,y,z,n)
+
+função de normalização de imagens (*struct img, n, x, y, z)
+
+função de pooling (*struct img, x, y, z, stride, ********[passar função
+como parâmetro????])
+
+função de filtragem (*struct img)

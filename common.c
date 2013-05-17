@@ -38,3 +38,7 @@ void errorMsg(char *msg, char *f) {
     fprintf(stderr, "Erro! %s em %s\n", msg, f);
     exit(EXIT_FAILURE);
 }
+
+void teste2 {
+    printf("teste\n");
+}
