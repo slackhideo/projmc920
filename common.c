@@ -39,6 +39,10 @@ void errorMsg(char *msg, char *f) {
     exit(EXIT_FAILURE);
 }
 
+void teste1 {
+    return;
+}
+
 void teste2 {
     printf("teste\n");
 }
