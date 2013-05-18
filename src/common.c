@@ -1,40 +1,26 @@
+/*
+ * common.c
+ * Contém funções comuns ao projeto
+ */
+
 #include "common.h"
 
-/* Aloca memória para um vetor de inteiros com n elementos */
-int *allocIntArray(int n, bool c) {
-    int *v;
+/* Invólucro para o malloc e o calloc */
+void *palloc(size_t n, size_t size, bool c, char *func) {
+    void *p;
 
     if(c == true) {
-        v = calloc(n, sizeof(int));
+        p = calloc(n, size);
     }
     else {
-        v = malloc(n * sizeof(int));
+        p = malloc(n * size);
     }
 
-    if(v == NULL) {
-        errorMsg(MEM, "allocIntArray");
+    if(p == NULL) {
+        errorMsg(MEM, func);
     }
 
-    return v;
-}
-
-
-/* Aloca memória para um vetor de caracteres sem sinal com n elementos */
-uchar *allocUCharArray(int n, bool c) {
-    uchar *v;
-
-    if(c == true) {
-        v = calloc(n, sizeof(uchar));
-    }
-    else {
-        v = malloc(n * sizeof(uchar));
-   }
-
-    if(v == NULL) {
-        errorMsg(MEM, "allocUCharArray");
-    }
-
-    return v;
+    return p;
 }
 
 

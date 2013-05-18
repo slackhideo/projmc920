@@ -12,11 +12,7 @@
 ImagePGM *newImage(int width, int height, int depth, int maxVal) {
     ImagePGM *new;
     
-    new = malloc(sizeof(ImagePGM));
-
-    if(new == NULL) {
-        errorMsg(MEM, "newImage");
-    }
+    new = palloc(1, sizeof(ImagePGM), false, "newImage");
 
     /* Configura as propriedades da imagem */
     new->width = width;
@@ -24,11 +20,7 @@ ImagePGM *newImage(int width, int height, int depth, int maxVal) {
     new->depth = depth;
     new->numEls = width * height;
     new->maxVal = maxVal;
-    new->vals = allocIntArray(width * height, false);
-
-    if(new->vals == NULL) {
-        errorMsg(MEM, "newImage");
-    }
+    new->vals = palloc(width * height, sizeof(int), false, "newImage");
 
     new->lower = INT_MAX;
     new->higher = 0;
@@ -37,7 +29,7 @@ ImagePGM *newImage(int width, int height, int depth, int maxVal) {
 }
 
 
-/* Destrói uma imagem PGM */
+/* Apaga uma imagem PGM */
 void delImage(ImagePGM **img) {
     ImagePGM *tmp;
 
@@ -120,7 +112,7 @@ ImagePGM *readImage(char *imgPath) {
         n = width * height;
         fgetc(fp);
 
-        vals = allocUCharArray(n, false);
+        vals = palloc(n, sizeof(uchar), false, "readImage");
 
         /* Lê os brilhos dos pixels da imagem */
         fread(vals, sizeof(uchar), n, fp);
@@ -154,4 +146,3 @@ ImagePGM *readImage(char *imgPath) {
 
     return img;
 }
-

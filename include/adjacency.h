@@ -21,6 +21,11 @@ typedef struct {
 
 
 /* Funções que operam com adjacências */
+
+/* Função que cria uma nova relação de adjacência */
 AdjRel *newAdjRel(int n);
+
+/* Função que apaga uma relação de adjacência */
+void delAdjRel(AdjRel **ar);
 
 #endif /* __ADJACENCY_H__ */

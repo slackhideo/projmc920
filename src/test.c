@@ -8,9 +8,9 @@ int main(int argc, char *argv[]) {
     if(argc > 1) {
         n = atoll(argv[1]);
 
-        v = allocUCharArray(n, false);
+        v = palloc(n, sizeof(uchar), false, "main");
 
-        printf("%ld %lld\n",sizeof(uchar),n);
+        printf("sizeof(uchar): %ld\tn: %lld\n", sizeof(uchar), n);
         for(i=0; i<n; i++) v[i] = 't';
     }
     else {
