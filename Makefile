@@ -2,8 +2,8 @@ libproj:
 	cd src; $(MAKE)
 
 test:
-	cd src; $(MAKE) test; mv test ../
+	cd tests; $(MAKE)
 
 .PHONY: clean
 clean:
-	rm -f test; cd src; $(MAKE) clean;
+	cd src; $(MAKE) clean; cd ../tests; $(MAKE) clean

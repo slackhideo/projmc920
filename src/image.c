@@ -46,7 +46,7 @@ void delImage(ImagePGM **img) {
 
 
 /* Lê uma imagem PGM */
-ImagePGM *readImage(char *imgPath) {
+ImagePGM *readImage(char *path) {
     char magicNumber[5], buffer[256];
     uchar *vals;
     int width, height, maxVal, i, n, lower = INT_MAX, higher = 0;
@@ -54,7 +54,7 @@ ImagePGM *readImage(char *imgPath) {
     ImagePGM *img = NULL;
 
     /* Abre o arquivo de imagem */
-    fp = fopen(imgPath, "rb");
+    fp = fopen(path, "rb");
     if(fp == NULL) {
         errorMsg(OPEN, "readImage");
     }
@@ -146,3 +146,32 @@ ImagePGM *readImage(char *imgPath) {
 
     return img;
 }
+
+
+/* Escreve uma imagem PGM */
+void writeImage(ImagePGM *img, char *path) {
+    FILE *fp;
+    int i, j;
+
+    /* Abre o arquivo de imagem para escrita */
+    fp = fopen(path, "wb");
+    if(fp == NULL) {
+        errorMsg(OPEN, "writeImage");
+    }
+
+    /* Escreve o cabeçalho da imagem no arquivo */
+    fprintf(fp, "P2\n");
+    fprintf(fp, "%d %d\n", img->width, img->height);
+    fprintf(fp, "%d\n", img->higher - img->lower);
+
+    /* Escreve o conteúdo da imagem no arquivo */
+    for(i = 0; i < img->height; i++) {
+        for(j = 0; j < img->width; j++) {
+            fprintf(fp, "%d ", img->vals[i*img->width + j] - img->lower);
+        }
+        fprintf(fp, "\n");
+    }
+
+    fclose(fp);
+}
+

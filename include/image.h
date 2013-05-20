@@ -36,4 +36,7 @@ void delImage(ImagePGM **img);
 /* Função que lê uma imagem */
 ImagePGM *readImage(char *imgPath);
 
+/* Função que escreve uma imagem */
+void writeImage(ImagePGM *img, char *path);
+
 #endif /* __IMAGE_H__ */

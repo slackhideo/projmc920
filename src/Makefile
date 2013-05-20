@@ -1,16 +1,8 @@
-# Compilador
-CC = gcc
-AR = ar
+include ../make.inc
 
-# Flags para o compilador
-CFLAGS = -Wall -W #-O2
-
-# Diretório padrão para os cabeçalhos
-INCLUDE = ../include
-
-# Diretório padrão para a biblioteca criada
-LIB = ../lib
-
+# Ajusta variáveis de caminhos
+INCLUDE := ../$(INCLUDE)
+LIB := ../$(LIB)
 
 all: libproj
 
@@ -32,9 +24,6 @@ adjacency.o: adjacency.c
 kernel.o: kernel.c
 	$(CC) -c $(CFLAGS) -I$(INCLUDE) kernel.c
 
-test: $(LIB)/libproj.a
-	$(CC) $(CFLAGS) -I$(INCLUDE) -L$(LIB) -o test test.c -lproj
-
 .PHONY: clean
 clean:
-	rm -rf $(LIB)/libproj.a test *.o *~
+	rm -f $(LIB)/libproj.a *.o *~

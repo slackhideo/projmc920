@@ -5,5 +5,7 @@
 
 #include "common.h"
 #include "image.h"
+#include "adjacency.h"
+#include "kernel.h"
 
 #endif /* __PROJLIB_H__ */
