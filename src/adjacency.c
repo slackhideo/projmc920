@@ -22,7 +22,7 @@ AdjRel *newAdjRel(int n) {
 
 /* Apaga uma relação de adjacência
  *
- * ar: relação de adjacência*/
+ * ar: relação de adjacência */
 void delAdjRel(AdjRel **ar) {
     AdjRel *tmp;
 
@@ -33,4 +33,30 @@ void delAdjRel(AdjRel **ar) {
         free(tmp);
         *ar = NULL;
     }
+}
+
+
+/* Lê uma relação de adjacência de um arquivo
+ *
+ * path: caminho do arquivo contendo a relação de adjacência */
+AdjRel *readAdjRel(char *path) {
+    FILE *fp;
+    AdjRel *ar;
+    int n, i;
+
+    fp = fopen(path, "r");
+
+    /* Lê quantidade de adjacentes */
+    fscanf(fp, "%d", &n);
+
+    ar = newAdjRel(n);
+
+    /* Lê os elementos adjacentes */
+    for(i = 0; i < n; i++) {
+        fscanf(fp, "%d %d", &ar->adj[i].dx, &ar->adj[i].dy);
+    }
+
+    fclose(fp);
+
+    return ar;
 }

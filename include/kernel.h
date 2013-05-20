@@ -24,7 +24,7 @@ Kernel *newKernel(int depth, AdjRel *ar);
 void delKernel(Kernel **k);
 
 /* Função que lê um kernel a partir de um arquivo */
-Kernel *readKernel(char *kernPath);
+Kernel *readKernel(char *path);
 
 /* Função que reflete um kernel */
 Kernel *reflectKernel(Kernel *k);

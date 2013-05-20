@@ -1,9 +1,9 @@
 libproj:
-	cd src; make
+	cd src; $(MAKE)
 
 test:
-	cd src; make test; mv test ../
+	cd src; $(MAKE) test; mv test ../
 
 .PHONY: clean
 clean:
-	cd src; make clean
+	rm -f test; cd src; $(MAKE) clean;

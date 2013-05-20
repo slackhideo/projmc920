@@ -52,3 +52,37 @@ void delKernel(Kernel **k) {
         *k = NULL;
     }
 }
+
+
+/* Lê um kernel de um arquivo 
+ *
+ * path: caminho do arquivo contendo o kernel */
+Kernel *readKernel(char *path) {
+    FILE *fp;
+    AdjRel *ar;
+    Kernel *new;
+    int na, nb;
+    int i, j;
+
+    fp = fopen(path, "r");
+
+    /* Lê a quantidade de adjacentes por banda e de bandas */
+    fscanf(fp, "%d %d", &na, &nb);
+
+    ar = newAdjRel(na);
+    new = newKernel(nb, ar);
+
+    /* Lê os elementos adjacentes */
+    for(i = 0; i < na; i++) {
+        for(j = 0; j < nb; j++) {
+            fscanf(fp, "%d %d %lf",
+                    &new->ar->adj[i].dx, &new->ar->adj[i].dy, &new->w[i][j]);
+        }
+    }
+
+    fclose(fp);
+
+    delAdjRel(&ar);
+
+    return new;
+}

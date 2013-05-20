@@ -4,6 +4,7 @@
 #define __ADJACENCY_H__
 
 /* Estrutura para spels adjacentes
+ *
  * dx: deslocamento em x para se chegar ao spel adjacente
  * dy: deslocamento em y para se chegar ao spel adjacente */
 typedef struct {
@@ -12,6 +13,7 @@ typedef struct {
 
 
 /* Estrutura para relações de adjacência
+ *
  * n:   Número de spels da relação de adjacência
  * adj: Vetor de spels adjacentes */
 typedef struct {
@@ -27,5 +29,8 @@ AdjRel *newAdjRel(int n);
 
 /* Função que apaga uma relação de adjacência */
 void delAdjRel(AdjRel **ar);
+
+/* Função que lê uma relação de adjacência de um arquivo */
+AdjRel *readAdjRel(char *path);
 
 #endif /* __ADJACENCY_H__ */
