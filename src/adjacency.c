@@ -44,7 +44,11 @@ AdjRel *readAdjRel(char *path) {
     AdjRel *ar;
     int n, i;
 
+    /* Abre o arquivo de relação de adjacências */
     fp = fopen(path, "r");
+    if(fp == NULL) {
+        errorMsg(OPEN, "readAdjRel");
+    }
 
     /* Lê quantidade de adjacentes */
     fscanf(fp, "%d", &n);

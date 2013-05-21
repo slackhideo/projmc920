@@ -9,7 +9,7 @@ run: tests
 	@echo ""
 	./runTests.sh
 
-tests: $(LIB)/libproj.a testReadWrite testAdjRel
+tests: $(LIB)/libproj.a testReadWrite testAdjRel testKernel
 
 $(LIB)/libproj.a:
 	cd ../src; $(MAKE)
@@ -22,6 +22,11 @@ testAdjRel: testAdjRel.c
 	$(CC) $(CFLAGS) -I$(INCLUDE) -L$(LIB) \
 			-o testAdjRel testAdjRel.c -lproj
 
+testKernel: testKernel.c
+	$(CC) $(CFLAGS) -I$(INCLUDE) -L$(LIB) \
+			-o testKernel testKernel.c -lproj
+
 .PHONY: clean
 clean:
-	rm -f testReadWrite flower_out.pgm adjRel_out *~
+	rm -f testReadWrite testAdjRel testKernel flower_out.pgm adjRel_out \
+			kernel_out *~

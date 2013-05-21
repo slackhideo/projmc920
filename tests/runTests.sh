@@ -23,3 +23,12 @@ rm -f adjRel_out
 ./testAdjRel > adjRel_out
 diff adjRel_check adjRel_out &> /dev/null
 results
+
+
+# Teste 3
+echo -n "* Teste 3 (kernel): "
+rm -f kernel_out
+./testKernel > kernel_out
+diff kernel_check kernel_out &> /dev/null
+results
+

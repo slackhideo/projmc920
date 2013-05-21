@@ -26,6 +26,10 @@ void *palloc(size_t n, size_t size, bool c, char *func) {
 
 /* Função que exibe uma mensagem de erro */
 void errorMsg(char *msg, char *f) {
-    fprintf(stderr, "Erro! %s em %s\n", msg, f);
+    setlocale(LC_ALL, "");
+    bindtextdomain("projmc920", "po");
+    textdomain("projmc920");
+
+    fprintf(stderr, _("Erro! %s em %s\n"), msg, f);
     exit(EXIT_FAILURE);
 }

@@ -64,7 +64,11 @@ Kernel *readKernel(char *path) {
     int na, nb;
     int i, j;
 
+    /* Abre o arquivo de kernel */
     fp = fopen(path, "r");
+    if(fp == NULL) {
+        errorMsg(OPEN, "readKernel");
+    }
 
     /* Lê a quantidade de adjacentes por banda e de bandas */
     fscanf(fp, "%d %d", &na, &nb);
@@ -83,6 +87,27 @@ Kernel *readKernel(char *path) {
     fclose(fp);
 
     delAdjRel(&ar);
+
+    return new;
+}
+
+
+/* Reflete um kernel
+ *
+ * k: kernel a ser refletido */
+Kernel *reflectKernel(Kernel *k) {
+    Kernel *new;
+    int na;
+    int i;
+
+    new = newKernel(k->depth, k->ar);
+    na = k->ar->n;
+
+    for(i = 0; i < na; i++) {
+        new->ar->adj[i].dx = -k->ar->adj[i].dx;
+        new->ar->adj[i].dy = -k->ar->adj[i].dy;
+        new->w[i] = k->w[i];
+    }
 
     return new;
 }

@@ -140,7 +140,7 @@ ImagePGM *readImage(char *path) {
         img->higher = higher;
     }
     else {
-        fprintf(stderr, "A imagem de entrada deve ser P2 ou P5\n");
+        fprintf(stderr, _("A imagem de entrada deve ser P2 ou P5\n"));
         exit(EXIT_FAILURE);
     }
 

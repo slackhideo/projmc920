@@ -5,10 +5,15 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <libintl.h>
+#include <locale.h>
+
+/* Deixando o uso de gettext mais prático */
+#define _(STRING) gettext(STRING)
 
 /* Mensagens de erro */
-#define MEM "Não foi possível alocar o espaço em memória solicitado"
-#define OPEN "Não foi possível abrir o arquivo"
+#define MEM _("Não foi possível alocar o espaço em memória solicitado")
+#define OPEN _("Não foi possível abrir o arquivo")
 
 
 /* Definições comuns */

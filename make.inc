@@ -3,7 +3,7 @@ CC = gcc
 AR = ar
 
 # Flags para o compilador
-CFLAGS = -Wall -W #-O2
+CFLAGS = -Wall -W -g#-O2
 
 # Diretório padrão para os cabeçalhos
 INCLUDE = include
