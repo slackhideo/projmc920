@@ -10,6 +10,8 @@
 
 /* Deixando o uso de gettext mais prático */
 #define _(STRING) gettext(STRING)
+#define N_(STRING) gettext_noop(STRING)
+#define gettext_noop(STRING) (STRING)
 
 /* Mensagens de erro */
 #define MEM _("Não foi possível alocar o espaço em memória solicitado")

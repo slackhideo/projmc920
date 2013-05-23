@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-05-20 22:37-0300\n"
+"POT-Creation-Date: 2013-05-22 20:03-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,15 +17,20 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/common.c:29
+#: src/image.c:143
+#, c-format
+msgid "A imagem de entrada deve ser P2 ou P5\n"
+msgstr ""
+
+#: src/common.c:33
 #, c-format
 msgid "Erro! %s em %s\n"
 msgstr ""
 
-#: include/common.h:20
+#: include/common.h:18
 msgid "Não foi possível abrir o arquivo"
 msgstr ""
 
-#: include/common.h:19
+#: include/common.h:17
 msgid "Não foi possível alocar o espaço em memória solicitado"
 msgstr ""
