@@ -4,7 +4,6 @@
  */
 
 #include "common.h"
-#include <math.h>
 #include "image.h"
 #include "adjacency.h"
 #include "kernel.h"
