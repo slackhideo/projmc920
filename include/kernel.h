@@ -29,4 +29,6 @@ Kernel *readKernel(char *path);
 /* Função que reflete um kernel */
 Kernel *reflectKernel(Kernel *k);
 
+Kernel ** randKernels (int numKernels, int depth, AdjRel * adjacency);
+
 #endif /* __KERNEL_H__ */
