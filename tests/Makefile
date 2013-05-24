@@ -32,5 +32,5 @@ testFilter: testFilter.c
 
 .PHONY: clean
 clean:
-	rm -f testReadWrite testAdjRel testKernel flower_out.pgm adjRel_out \
-			kernel_out filter_out.pgm *~
+	rm -f testReadWrite testAdjRel testKernel testFilter
+	rm -f flower_out.pgm adjRel_out	kernel_out filter_out.pgm *~

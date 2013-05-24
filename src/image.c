@@ -172,3 +172,21 @@ void writeImage(ImagePGM *img, char *path) {
     fclose(fp);
 }
 
+
+/* Encontra o menor e o maior valor de brilho da imagem */
+void findLowerHigher(ImagePGM *img) {
+    int lower = INT_MAX, higher = 0;
+    int i;
+
+    for(i = 0; i < img->numEls; i++) {
+        if(img->vals[i] < lower) {
+            lower = img->vals[i];
+        }
+        if(img->vals[i] > higher) {
+            higher = img->vals[i];
+        }
+    }
+
+    img->lower = lower;
+    img->higher = higher;
+}

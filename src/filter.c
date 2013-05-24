@@ -24,11 +24,14 @@ ImagePGM *correlate(ImagePGM *img, Kernel *k) {
     /* Cria imagem de saída */
     out = newImage(img->width, img->height, 1);
 
+    /* Percorre a imagem com o kernel */
     for(yp = 0; yp < img->height; yp++) {
         for(xp = 0; xp < img->width; xp++) {
             p = xp + yp * out->width;
             val = 0.0;
 
+            /* Para todo adjacente q de p, calcula a somatória da
+             * multiplicação entre o brilho da imagem e o peso do adjacente */
             for(i = 0; i < k->ar->n; i++) {
                 xq = xp + k->ar->adj[i].dx;
                 yq = yp + k->ar->adj[i].dy;
@@ -40,11 +43,12 @@ ImagePGM *correlate(ImagePGM *img, Kernel *k) {
                 }
             }
 
+            /* Coloca o valor do brilho na imagem */
             out->vals[p] = (int)round(val);
         }
     }
 
-    //fazer pegar menor e maior
+    findLowerHigher(out);
 
     return out;
 }

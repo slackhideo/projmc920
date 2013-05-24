@@ -37,4 +37,7 @@ ImagePGM *readImage(char *imgPath);
 /* Função que escreve uma imagem */
 void writeImage(ImagePGM *img, char *path);
 
+/* Função que encontra o menor e o maior valor de brilho da imagem */
+void findLowerHigher(ImagePGM *img);
+
 #endif /* __IMAGE_H__ */
