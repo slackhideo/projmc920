@@ -148,7 +148,7 @@ Kernel ** randKernels (int numKernels, int depth, AdjRel * adjacency) {
         adjSpel = 0;
         for (j = 0; j < (adjacency->n * depth); j++) {
             //Obtém número aleatório entre 0 e 1 com distribuição uniforme.
-            rand_weight = (double (rand())) / RAND_MAX;
+            rand_weight = ((double) rand()) / RAND_MAX;
             
             //Atribui esse número a um dos pesos do kernel.
             k->w[adjSpel][layer] = rand_weight;

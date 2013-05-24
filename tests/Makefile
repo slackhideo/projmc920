@@ -24,7 +24,7 @@ testAdjRel: testAdjRel.c
 
 testKernel: testKernel.c
 	$(CC) $(CFLAGS) -I$(INCLUDE) -L$(LIB) \
-			-o testKernel testKernel.c -lproj
+			-o testKernel testKernel.c -lproj -lm
 
 testFilter: testFilter.c
 	$(CC) $(CFLAGS) -I$(INCLUDE) -L$(LIB) \
