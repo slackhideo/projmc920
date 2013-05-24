@@ -8,7 +8,7 @@
  * width:  largura da imagem
  * height: altura da imagem
  * depth:  número de bandas (profundidade)
- * numEls: quantidade de pixels
+ * numEls: quantidade de pixels por banda
  * vals:   vetor de brilhos da imagem
  * lower:  menor brilho dos pixels
  * higher: maior brilho dos pixels */
@@ -39,5 +39,8 @@ void writeImage(ImagePGM *img, char *path);
 
 /* Função que encontra o menor e o maior valor de brilho da imagem */
 void findLowerHigher(ImagePGM *img);
+
+/* Função que adiciona novas bandas à imagem */
+void addNewLayer(ImagePGM *img, int addLayers, int *vals);
 
 #endif /* __IMAGE_H__ */

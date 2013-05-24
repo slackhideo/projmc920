@@ -17,7 +17,7 @@ ImagePGM *correlate(ImagePGM *img, Kernel *k) {
     ImagePGM *out;
     int p, xp, yp;
     int q, xq, yq;
-    int i;
+    int i, j;
     double val;
 
     /* Cria imagem de saída */
@@ -37,8 +37,12 @@ ImagePGM *correlate(ImagePGM *img, Kernel *k) {
 
                 if((xq >= 0) && (xq < img->width) &&
                    (yq >= 0) && (yq < img->height)) {
-                    q = xq + yq * img->width;
-                    val += img->vals[q] * k->w[i][0];
+
+                    /* Multiplica em todas as bandas da imagem */
+                    for(j = 0; j < img->depth; j++) {
+                        q = (xq + yq * img->width) + (j * img->numEls);
+                        val += img->vals[q] * k->w[i][j];
+                    }
                 }
             }
 

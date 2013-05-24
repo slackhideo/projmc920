@@ -19,7 +19,7 @@ ImagePGM *newImage(int width, int height, int depth) {
     new->height = height;
     new->depth = depth;
     new->numEls = width * height;
-    new->vals = palloc(width * height, sizeof(int), false, "newImage");
+    new->vals = palloc(depth * width * height, sizeof(int), false, "newImage");
 
     new->lower = INT_MAX;
     new->higher = 0;
@@ -189,4 +189,29 @@ void findLowerHigher(ImagePGM *img) {
 
     img->lower = lower;
     img->higher = higher;
+}
+
+
+/* Adiciona novas bandas à imagem
+ *
+ * img:       imagem que terá bandas adicionandas
+ * addLayers: número de bandas a serem adicionadas
+ * vals:      vetor de valores a serem copiados para as novas bandas
+ *            (deve ser do tamanho (addLayers * img->numEls) */
+void addNewLayer(ImagePGM *img, int addLayers, int *vals) {
+    int i, j;
+
+    /* Altera o tamanho do vetor de brilhos da imagem */
+    img->vals = realloc(img->vals, (img->depth + addLayers) *
+            img->width * img->height * sizeof(int));
+
+    if(img->vals == NULL) {
+        errorMsg(MEM, "addNewLayer");
+    }
+
+    /* Copia os novos valores para a imagem */
+    for(i = 0; i < addLayers * img->numEls; i++) {
+        j = img->depth * img->numEls + i;
+        img->vals[j] = vals[i];
+    }
 }
