@@ -19,7 +19,8 @@ ImagePGM *newImage(int width, int height, int depth) {
     new->height = height;
     new->depth = depth;
     new->numEls = width * height;
-    new->vals = palloc(depth * width * height, sizeof(int), false, "newImage");
+    new->vals = palloc(depth * width * height, sizeof(double), false,
+            "newImage");
 
     new->lower = INT_MAX;
     new->higher = 0;
@@ -78,7 +79,7 @@ ImagePGM *readImage(char *path) {
         /* Lê os brilhos dos pixels da imagem */
         n = width * height;
         for(i = 0; i < n; i++) {
-            fscanf(fp, "%d", &(img->vals[i]));
+            fscanf(fp, "%lf", &(img->vals[i]));
 
             /* Verifica se é o menor ou maior valor */
             if(img->vals[i] < lower) {
@@ -159,12 +160,13 @@ void writeImage(ImagePGM *img, char *path) {
     /* Escreve o cabeçalho da imagem no arquivo */
     fprintf(fp, "P2\n");
     fprintf(fp, "%d %d\n", img->width, img->height);
-    fprintf(fp, "%d\n", img->higher - img->lower);
+    fprintf(fp, "%d\n", (int)round(img->higher - img->lower));
 
     /* Escreve o conteúdo da imagem no arquivo */
     for(i = 0; i < img->height; i++) {
         for(j = 0; j < img->width; j++) {
-            fprintf(fp, "%d ", img->vals[i*img->width + j] - img->lower);
+            fprintf(fp, "%d ", (int)round(img->vals[i*img->width + j]
+                        - img->lower));
         }
         fprintf(fp, "\n");
     }
@@ -175,7 +177,7 @@ void writeImage(ImagePGM *img, char *path) {
 
 /* Encontra o menor e o maior valor de brilho da imagem */
 void findLowerHigher(ImagePGM *img) {
-    int lower = INT_MAX, higher = 0;
+    double lower = INT_MAX, higher = 0;
     int i;
 
     for(i = 0; i < img->numEls; i++) {
@@ -198,12 +200,12 @@ void findLowerHigher(ImagePGM *img) {
  * addLayers: número de bandas a serem adicionadas
  * vals:      vetor de valores a serem copiados para as novas bandas
  *            (deve ser do tamanho (addLayers * img->numEls) */
-void addNewLayer(ImagePGM *img, int addLayers, int *vals) {
+void addNewLayer(ImagePGM *img, int addLayers, double *vals) {
     int i, j;
 
     /* Altera o tamanho do vetor de brilhos da imagem */
     img->vals = realloc(img->vals, (img->depth + addLayers) *
-            img->width * img->height * sizeof(int));
+            img->width * img->height * sizeof(double));
 
     if(img->vals == NULL) {
         errorMsg(MEM, "addNewLayer");

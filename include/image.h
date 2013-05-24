@@ -17,9 +17,9 @@ typedef struct {
     int height;
     int depth;
     int numEls;
-    int *vals;
-    int lower;
-    int higher;
+    double *vals;
+    double lower;
+    double higher;
 } ImagePGM;
 
 
@@ -41,6 +41,6 @@ void writeImage(ImagePGM *img, char *path);
 void findLowerHigher(ImagePGM *img);
 
 /* Função que adiciona novas bandas à imagem */
-void addNewLayer(ImagePGM *img, int addLayers, int *vals);
+void addNewLayer(ImagePGM *img, int addLayers, double *vals);
 
 #endif /* __IMAGE_H__ */

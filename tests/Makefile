@@ -16,7 +16,7 @@ $(LIB)/libproj.a:
 
 testReadWrite: testReadWrite.c
 	$(CC) $(CFLAGS) -I$(INCLUDE) -L$(LIB) \
-			-o testReadWrite testReadWrite.c -lproj
+			-o testReadWrite testReadWrite.c -lproj -lm
 
 testAdjRel: testAdjRel.c
 	$(CC) $(CFLAGS) -I$(INCLUDE) -L$(LIB) \
@@ -37,5 +37,6 @@ testRandKernels: testRandKernels.c
 
 .PHONY: clean
 clean:
-	rm -f testReadWrite testAdjRel testKernel testFilter
-	rm -f flower_out.pgm adjRel_out	kernel_out filter_out.pgm *~
+	rm -f testReadWrite testAdjRel testKernel testFilter testRandKernels
+	rm -f flower_out.pgm adjRel_out	kernel_out filter_out.pgm *~ \
+			randKernels_out

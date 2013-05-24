@@ -47,10 +47,11 @@ ImagePGM *correlate(ImagePGM *img, Kernel *k) {
             }
 
             /* Coloca o valor do brilho na imagem */
-            out->vals[p] = (int)round(val);
+            out->vals[p] = val;
         }
     }
 
+    /* Atualiza os brilhos mínimo e máximo da imagem */
     findLowerHigher(out);
 
     return out;
