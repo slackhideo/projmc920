@@ -29,6 +29,7 @@ Kernel *readKernel(char *path);
 /* Função que reflete um kernel */
 Kernel *reflectKernel(Kernel *k);
 
+/* Função que gera kernels aleatórios com média 0 e norma 1. */
 Kernel ** randKernels (int numKernels, int depth, AdjRel * adjacency);
 
 #endif /* __KERNEL_H__ */
