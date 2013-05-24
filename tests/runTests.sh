@@ -40,3 +40,7 @@ rm -f filter_out.pgm
 diff filter_check.pgm filter_out.pgm &> /dev/null
 results
 
+# Teste 5 (kernels aleatórios)
+echo "* Teste 5: Checar randKernels_out!"
+rm -f randKernels_out
+./testRandKernels > randKernels_out

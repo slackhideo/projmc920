@@ -113,11 +113,11 @@ Kernel *reflectKernel(Kernel *k) {
 }
 
 /*Cria novos kernels, em uma distribuição com média 0 e desvio padrão 1.
-  numKernels: Quantidade de kernels a serem criados.
-  depth: Número de bandas dos kernels.
-  adjacency: Relação de adjacência (2D) do kernel.
-  Retorna vetor (alocado dinamicamente) com apontadores para os kernels gerados.
-*/
+ *numKernels: Quantidade de kernels a serem criados.
+ *depth: Número de bandas dos kernels.
+ *adjacency: Relação de adjacência (2D) do kernel.
+ *Retorna vetor (alocado dinamicamente) com apontadores para os
+ *kernels gerados.*/
 Kernel ** randKernels (int numKernels, int depth, AdjRel * adjacency) {
     //Peso gerado aleatoriamente.
     double rand_weight;
@@ -148,8 +148,8 @@ Kernel ** randKernels (int numKernels, int depth, AdjRel * adjacency) {
         adjSpel = 0;
         for (j = 0; j < (adjacency->n * depth); j++) {
             //Obtém número aleatório entre 0 e 1 com distribuição uniforme.
-            rand_weight = ((double) rand()) / RAND_MAX;
-            
+            rand_weight = ((double) rand()) / RAND_MAX;        
+
             //Atribui esse número a um dos pesos do kernel.
             k->w[adjSpel][layer] = rand_weight;
 
@@ -186,7 +186,7 @@ Kernel ** randKernels (int numKernels, int depth, AdjRel * adjacency) {
         adjSpel = 0;
         for (j = 0; j < (adjacency->n * depth); j++) {
             k->w[adjSpel][layer] = k->w[adjSpel][layer] - average;
-            k->w[adjSpel][layer] = k->w[adjSpel][layer] / norm;    
+            k->w[adjSpel][layer] = k->w[adjSpel][layer] / norm;  
             //Passa para o spel seguinte na adjacência.
             adjSpel++;
             //Passa para a banda seguinte.
