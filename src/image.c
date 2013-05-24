@@ -9,7 +9,7 @@
 #include "image.h"
 
 /* Cria uma nova imagem PGM */
-ImagePGM *newImage(int width, int height, int depth, int maxVal) {
+ImagePGM *newImage(int width, int height, int depth) {
     ImagePGM *new;
     
     new = palloc(1, sizeof(ImagePGM), false, "newImage");
@@ -19,7 +19,6 @@ ImagePGM *newImage(int width, int height, int depth, int maxVal) {
     new->height = height;
     new->depth = depth;
     new->numEls = width * height;
-    new->maxVal = maxVal;
     new->vals = palloc(width * height, sizeof(int), false, "newImage");
 
     new->lower = INT_MAX;
@@ -49,7 +48,7 @@ void delImage(ImagePGM **img) {
 ImagePGM *readImage(char *path) {
     char magicNumber[5], buffer[256];
     uchar *vals;
-    int width, height, maxVal, i, n, lower = INT_MAX, higher = 0;
+    int width, height, i, n, lower = INT_MAX, higher = 0;
     FILE *fp;
     ImagePGM *img = NULL;
 
@@ -69,13 +68,12 @@ ImagePGM *readImage(char *path) {
             fgets(buffer, 255, fp);
         }
 
-        /* Obtém a largura, altura e o maior brilho da imagem */
+        /* Obtém a largura e a altura da imagem */
         sscanf(buffer, "%d %d\n", &width, &height);
         fgets(buffer, 255, fp);
-        sscanf(buffer, "%d\n", &maxVal);
 
         /* Cria uma nova imagem na representação interna */
-        img = newImage(width, height, 1, maxVal);
+        img = newImage(width, height, 1);
 
         /* Lê os brilhos dos pixels da imagem */
         n = width * height;
@@ -104,10 +102,9 @@ ImagePGM *readImage(char *path) {
             fgets(buffer, 255, fp);
         }
 
-        /* Obtém a largura, altura e o maior brilho da imagem */
+        /* Obtém a largura e a altura da imagem */
         sscanf(buffer, "%d %d\n", &width, &height);
         fgets(buffer, 255, fp);
-        sscanf(buffer, "%d\n", &maxVal);
 
         n = width * height;
         fgetc(fp);
@@ -120,7 +117,7 @@ ImagePGM *readImage(char *path) {
         fclose(fp);
 
         /* Cria uma nova imagem na representação interna */
-        img = newImage(width, height, 1, maxVal);
+        img = newImage(width, height, 1);
 
         /* Passa os valores dos brilhos dos pixels para a estrutura da imagem */
         for(i = 0; i < n; i++) {

@@ -7,5 +7,6 @@
 #include "image.h"
 #include "adjacency.h"
 #include "kernel.h"
+#include "filter.h"
 
 #endif /* __PROJLIB_H__ */

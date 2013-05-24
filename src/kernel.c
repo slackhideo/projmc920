@@ -61,7 +61,7 @@ Kernel *readKernel(char *path) {
     FILE *fp;
     AdjRel *ar;
     Kernel *new;
-    int na, nb;
+    int na, nl;
     int i, j;
 
     /* Abre o arquivo de kernel */
@@ -71,14 +71,14 @@ Kernel *readKernel(char *path) {
     }
 
     /* Lê a quantidade de adjacentes por banda e de bandas */
-    fscanf(fp, "%d %d", &na, &nb);
+    fscanf(fp, "%d %d", &na, &nl);
 
     ar = newAdjRel(na);
-    new = newKernel(nb, ar);
+    new = newKernel(nl, ar);
 
     /* Lê os elementos adjacentes */
     for(i = 0; i < na; i++) {
-        for(j = 0; j < nb; j++) {
+        for(j = 0; j < nl; j++) {
             fscanf(fp, "%d %d %lf",
                     &new->ar->adj[i].dx, &new->ar->adj[i].dy, &new->w[i][j]);
         }

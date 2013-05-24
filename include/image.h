@@ -9,7 +9,6 @@
  * height: altura da imagem
  * depth:  número de bandas (profundidade)
  * numEls: quantidade de pixels
- * maxVal: brilho máximo dos pixels
  * vals:   vetor de brilhos da imagem
  * lower:  menor brilho dos pixels
  * higher: maior brilho dos pixels */
@@ -18,7 +17,6 @@ typedef struct {
     int height;
     int depth;
     int numEls;
-    int maxVal;
     int *vals;
     int lower;
     int higher;
@@ -28,7 +26,7 @@ typedef struct {
 /* Funções que operam com imagens PGM */
 
 /* Função que cria uma nova imagem */
-ImagePGM *newImage(int width, int height, int depth, int maxVal);
+ImagePGM *newImage(int width, int height, int depth);
 
 /* Função que apaga uma imagem */
 void delImage(ImagePGM **img);

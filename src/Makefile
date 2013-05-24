@@ -8,8 +8,8 @@ all: libproj
 
 libproj: $(LIB)/libproj.a
 
-$(LIB)/libproj.a: common.o image.o adjacency.o kernel.o
-	$(AR) csr $(LIB)/libproj.a common.o image.o adjacency.o kernel.o
+$(LIB)/libproj.a: common.o image.o adjacency.o kernel.o filter.o
+	$(AR) csr $(LIB)/libproj.a common.o image.o adjacency.o kernel.o filter.o
 	@echo "Compilação da biblioteca completa"
 
 common.o: common.c
@@ -23,6 +23,9 @@ adjacency.o: adjacency.c
 
 kernel.o: kernel.c
 	$(CC) -c $(CFLAGS) -I$(INCLUDE) kernel.c
+
+filter.o: filter.c
+	$(CC) -c $(CFLAGS) -I$(INCLUDE) filter.c
 
 .PHONY: clean
 clean:

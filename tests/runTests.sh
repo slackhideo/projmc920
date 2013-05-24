@@ -9,26 +9,34 @@ results() {
     fi
 }
 
-# Teste 1
-echo -n "* Teste 1 (leitura e escrita): "
+# Teste 1 (leitura e escrita de imagens)
+echo -n "* Teste 1: "
 rm -f flower_out.pgm
 ./testReadWrite
 diff flower_check.pgm flower_out.pgm &> /dev/null
 results
 
 
-# Teste 2
-echo -n "* Teste 2 (relações de adjacência): "
+# Teste 2 (leitura de relações de adjacência)
+echo -n "* Teste 2: "
 rm -f adjRel_out
 ./testAdjRel > adjRel_out
 diff adjRel_check adjRel_out &> /dev/null
 results
 
 
-# Teste 3
-echo -n "* Teste 3 (kernel): "
+# Teste 3 (leitura de kernel)
+echo -n "* Teste 3: "
 rm -f kernel_out
 ./testKernel > kernel_out
 diff kernel_check kernel_out &> /dev/null
+results
+
+
+# Teste 4 (filtragem linear)
+echo -n "* Teste 4: "
+rm -f filter_out.pgm
+./testFilter
+diff filter_check.pgm filter_out.pgm &> /dev/null
 results
 
