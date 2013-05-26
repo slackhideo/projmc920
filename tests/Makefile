@@ -9,7 +9,8 @@ run: tests
 	@echo ""
 	./runTests.sh
 
-tests: $(LIB)/libproj.a testReadWrite testAdjRel testKernel testFilter testRandKernels
+tests: $(LIB)/libproj.a testReadWrite testAdjRel testKernel testFilter \
+testRandKernels poolingTest
 
 $(LIB)/libproj.a:
 	cd ../src; $(MAKE)
@@ -41,6 +42,9 @@ poolingTest: poolingTest.c
 
 .PHONY: clean
 clean:
-	rm -f testReadWrite testAdjRel testKernel testFilter testRandKernels
+	rm -f testReadWrite testAdjRel testKernel testFilter testRandKernels \
+			poolingTest
 	rm -f flower_out.pgm adjRel_out	kernel_out filter_out.pgm *~ \
-			randKernels_out
+			randKernels_out flower_out_pooling_max.pgm \
+			flower_out_pooling_mean.pgm flower_out_pooling_min.pgm \
+			flower_out_pooling_norm2.pgm
