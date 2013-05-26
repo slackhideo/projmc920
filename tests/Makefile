@@ -34,6 +34,10 @@ testRandKernels: testRandKernels.c
 	$(CC) $(CFLAGS) -I$(INCLUDE) -L$(LIB) \
 			-o testRandKernels testRandKernels.c -lproj -lm
 
+poolingTest: poolingTest.c
+	$(CC) $(CFLAGS) -I$(INCLUDE) -L$(LIB) \
+			-o poolingTest poolingTest.c -lproj -lm
+
 
 .PHONY: clean
 clean:

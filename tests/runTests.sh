@@ -43,4 +43,16 @@ results
 # Teste 5 (kernels aleatórios)
 echo "* Teste 5: Checar randKernels_out!"
 rm -f randKernels_out
-./testRandKernels &> randKernels_out
+./testRandKernels > randKernels_out
+
+# Teste 6 (Pooling)
+echo "* Teste 6: Testando Pooling:"
+rm -f flower_out_pooling.pgm
+rm -f flower_out_pooling_max.pgm
+rm -f flower_out_pooling_min.pgm
+rm -f flower_out_pooling_mean.pgm
+rm -f flower_out_pooling_norm2.pgm
+./poolingTest
+
+
+=======
