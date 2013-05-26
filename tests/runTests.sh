@@ -53,6 +53,3 @@ rm -f flower_out_pooling_min.pgm
 rm -f flower_out_pooling_mean.pgm
 rm -f flower_out_pooling_norm2.pgm
 ./poolingTest
-
-
-=======
