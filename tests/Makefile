@@ -10,7 +10,7 @@ run: tests
 	./runTests.sh
 
 tests: $(LIB)/libproj.a testReadWrite testAdjRel testKernel testFilter \
-testRandKernels poolingTest testNormalization
+testRandKernels poolingTest testNormalization testRandKernels2
 
 $(LIB)/libproj.a:
 	cd ../src; $(MAKE)
@@ -42,6 +42,10 @@ poolingTest: poolingTest.c
 testNormalization: testNormalization.c
 	$(CC) $(CFLAGS) -I$(INCLUDE) -L$(LIB) \
 			-o testNormalization testNormalization.c -lproj -lm
+
+testRandKernels2: testRandKernels2.c
+	$(CC) $(CFLAGS) -I$(INCLUDE) -L$(LIB) \
+			-o testRandKernels2 testRandKernels2.c -lproj -lm
 
 .PHONY: clean
 clean:

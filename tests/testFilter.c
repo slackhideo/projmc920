@@ -10,7 +10,7 @@ int main(void) {
 
     img = readImage("flower.pgm");
 
-    k = readKernel("kernelSharp");
+    k = readKernelText("kernelSharp");
 
     out = correlate(img, k);
 

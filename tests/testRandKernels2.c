@@ -1,10 +1,11 @@
-/*testRandKernels.c
- *Testa a aleatoriedade dos kernels gerados por "readKernelsMemory()"*/
+/*testRandKernels2.c
+ *Testa a escrita e a leitura de kernels gerados aleatoriamente 
+ *por "randKernelsFile()"*/
 
 #include "projlib.h"
 
 int main (void) {
-    Kernel ** kerns;
+    Kernel ** kerns = NULL;
     AdjRel * a;
     int x, y;
     int i, j, k;
@@ -20,7 +21,8 @@ int main (void) {
         }
     }
 
-    kerns = randKernelsMemory (5, 3, a);
+    randKernelsFile (5, 3, a, "./randKernels.bin");
+    kerns = readKernelsBinary("./randKernels.bin");
      
     printf ("\nPesos: "); 
     for (i = 0; i < 5; i++) {
@@ -33,6 +35,7 @@ int main (void) {
             printf ("\n");
         }
     }
+   
 
     return 0;
 }
