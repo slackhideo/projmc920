@@ -9,5 +9,6 @@
 #include "kernel.h"
 #include "filter.h"
 #include "pooling.h"
+#include "normalization.h"
 
 #endif /* __PROJLIB_H__ */
