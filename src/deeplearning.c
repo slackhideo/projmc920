@@ -56,7 +56,7 @@ int main(int argc, char *argv[]) {
 
         /* Gera os kernels (neurônios) aleatoriamente para o nível atual */
         if(atoi (argv[2]) == 1) {
-            karray = randKernels(parray[i+1], parray[i], ar);
+            karray = randKernelsMemory(parray[i+1], parray[i], ar);
         }
 
         /* Cria imagem para armazenar o resultado das filtragens */
