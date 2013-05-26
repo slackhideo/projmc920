@@ -41,7 +41,8 @@ diff filter_check.pgm filter_out.pgm &> /dev/null
 results
 
 # Teste 5 (kernels aleatórios)
-echo "* Teste 5: Checar randKernels_out!"
+echo "* Teste 5: Testando... Cheque o arquivo randKernels_out para conferir 
+o resultado do teste!"
 rm -f randKernels_out
 ./testRandKernels > randKernels_out
 
