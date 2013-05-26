@@ -21,19 +21,19 @@ int main() {
     
     imgSaida = pooling(img, strideX, strideY, ar, min);
     
-    writeImage(imgSaida, "flower_out_pooling_min.pgm");
+    writeImage(imgSaida, "flower_out_pooling_min.pgm", 1);
     
     imgSaida = pooling(img, strideX, strideY, ar, max);
     
-    writeImage(imgSaida, "flower_out_pooling_max.pgm");
+    writeImage(imgSaida, "flower_out_pooling_max.pgm", 1);
     
     imgSaida = pooling(img, strideX, strideY, ar, mean);
     
-    writeImage(imgSaida, "flower_out_pooling_mean.pgm");
+    writeImage(imgSaida, "flower_out_pooling_mean.pgm", 1);
     
     imgSaida = pooling(img, strideX, strideY, ar, norm2);
     
-    writeImage(imgSaida, "flower_out_pooling_norm2.pgm");
+    writeImage(imgSaida, "flower_out_pooling_norm2.pgm", 1);
     
     return EXIT_SUCCESS;
 }

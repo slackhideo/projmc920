@@ -14,7 +14,7 @@ int main(void) {
 
     out = correlate(img, k);
 
-    writeImage(out, "filter_out.pgm");
+    writeImage(out, "filter_out.pgm", 1);
 
     return EXIT_SUCCESS;
 }

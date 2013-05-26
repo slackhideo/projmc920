@@ -35,7 +35,7 @@ void delImage(ImagePGM **img);
 ImagePGM *readImage(char *imgPath);
 
 /* Função que escreve uma imagem */
-void writeImage(ImagePGM *img, char *path);
+void writeImage(ImagePGM *img, char *path, int factor);
 
 /* Função que encontra o menor e o maior valor de brilho da imagem */
 void findLowerHigher(ImagePGM *img);

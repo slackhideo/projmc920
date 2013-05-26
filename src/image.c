@@ -156,8 +156,11 @@ ImagePGM *readImage(char *path) {
 
 /* Escreve uma imagem PGM
  *
- * path: caminho onde será salva a imagem */
-void writeImage(ImagePGM *img, char *path) {
+ * path: caminho onde será salva a imagem
+ * factor: Fator pelo qual os valores da imagem serão multiplicados.
+ * Usado, por exemplo, quando os valores da estrutura de entrada estão
+ * entre 0 e 1. */
+void writeImage(ImagePGM *img, char *path, int factor) {
     FILE *fp;
     int i, j;
 
@@ -170,18 +173,20 @@ void writeImage(ImagePGM *img, char *path) {
     /* Escreve o cabeçalho da imagem no arquivo */
     fprintf(fp, "P2\n");
     fprintf(fp, "%d %d\n", img->width, img->height);
-    fprintf(fp, "%d\n", (int)round(img->higher - img->lower));
+    fprintf(fp, "%d\n", (int)round((img->higher - img->lower) * factor));
 
     /* Escreve o conteúdo da imagem no arquivo */
     for(i = 0; i < img->height; i++) {
         for(j = 0; j < img->width; j++) {
-            fprintf(fp, "%d ", (int)round(img->vals[i*img->width + j]
-                        - img->lower));
+            fprintf(fp, "%d ", (int)round((img->vals[i*img->width + j]
+                        - img->lower) * factor));
         }
         fprintf(fp, "\n");
     }
 
     fclose(fp);
+
+    return;
 }
 
 

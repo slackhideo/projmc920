@@ -14,7 +14,7 @@ int main() {
     
     imgSaida = normalization(img, ar);
     
-    writeImage(imgSaida, "flower_out_normalization.pgm");
+    writeImage(imgSaida, "flower_out_normalization.pgm", 255);
     
     return EXIT_SUCCESS;
 }

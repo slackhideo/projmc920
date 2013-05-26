@@ -9,7 +9,7 @@ int main(void) {
 
     img = readImage("flower.pgm");
 
-    writeImage(img, "flower_out.pgm");
+    writeImage(img, "flower_out.pgm", 1);
 
     return EXIT_SUCCESS;
 }
