@@ -156,10 +156,11 @@ ImagePGM *readImage(char *path) {
 
 /* Escreve uma imagem PGM
  *
- * path: caminho onde será salva a imagem
- * factor: Fator pelo qual os valores da imagem serão multiplicados.
- * Usado, por exemplo, quando os valores da estrutura de entrada estão
- * entre 0 e 1. */
+ * img:    imagem a ser escrita
+ * path:   caminho onde será salva a imagem
+ * factor: fator pelo qual os valores da imagem serão multiplicados.
+ *         Usado, por exemplo, quando os valores da estrutura de entrada
+ *         estão entre 0 e 1. */
 void writeImage(ImagePGM *img, char *path, int factor) {
     FILE *fp;
     int i, j;
@@ -236,6 +237,31 @@ void addNewLayer(ImagePGM *img, int addLayers, double *vals) {
     
     /* Atualiza a profundidade da imagem */
     img->depth = img->depth + addLayers;
+
+    return;
+}
+
+
+/* Salva os brilhos de uma imagem como um vetor de atributos em arquivo
+ *
+ * img:  imagem cujo vetor de atributos será escrito
+ * path: caminho onde será salvo o vetor de atributos */
+void writeAttribVector(ImagePGM *img, char *path) {
+    FILE *fp;
+    int i, j;
+
+    /* Abre o arquivo para escrita */
+    fp = fopen(path, "wb");
+    if(fp == NULL) {
+        errorMsg(OPEN, "writeAttribVector");
+    }
+
+    /* Escreve o vetor de atributos no arquivo */
+    for(i = 0; i < img->depth * img->numEls; i++) {
+        fprintf(fp, "%lf;", img->vals[i]);
+    }
+
+    fclose(fp);
 
     return;
 }

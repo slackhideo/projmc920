@@ -37,13 +37,11 @@ int main(int argc, char *argv[]) {
     arlist = palloc(N_LEVELS, sizeof(AdjRel *), false, "main");
 
     arlist[0] = readAdjRel("adjs/adj3");
-    arlist[1] = arlist[0];
-    arlist[2] = arlist[0];
-    arlist[3] = arlist[0];
+    arlist[1] = readAdjRel("adjs/adj5");
+    arlist[2] = readAdjRel("adjs/adj7");
 
     /* Início de L0 */
-//    img = readImage(argv[1]);
-    img = readImage("flower");
+    img = readImage(argv[1]);
 
     ar = arlist[0];
 
@@ -82,9 +80,10 @@ int main(int argc, char *argv[]) {
 
         /* Processo de normalização */
         imgNorm = normalization(imgPool, ar);
-
-        writeImage(imgNorm, "saida.pgm");
     }
+
+    /* Salva o vetor de atributos resultante */
+    writeAttribVector(imgNorm, "vector.out");
 
     return EXIT_SUCCESS;
 }

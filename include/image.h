@@ -34,7 +34,7 @@ void delImage(ImagePGM **img);
 /* Função que lê uma imagem */
 ImagePGM *readImage(char *imgPath);
 
-/* Função que escreve uma imagem */
+/* Função que escreve uma imagem em arquivo */
 void writeImage(ImagePGM *img, char *path, int factor);
 
 /* Função que encontra o menor e o maior valor de brilho da imagem */
@@ -42,5 +42,8 @@ void findLowerHigher(ImagePGM *img);
 
 /* Função que adiciona novas bandas à imagem */
 void addNewLayer(ImagePGM *img, int addLayers, double *vals);
+
+/* Função que escreve um vetor de atributos em arquivo */
+void writeAttribVector(ImagePGM *img, char *path);
 
 #endif /* __IMAGE_H__ */
