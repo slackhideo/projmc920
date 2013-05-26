@@ -46,13 +46,11 @@ ImagePGM *correlate(ImagePGM *img, Kernel *k) {
                 }
             }
 
-            /* Coloca o valor do brilho na imagem */
-            out->vals[p] = val;
+            /* Coloca o valor do brilho na imagem, segundo a função de
+             * ativação */
+            out->vals[p] = activationFunction(val);
         }
     }
-
-    /* Invoca a função de ativação */
-    activationFunction(out);
 
     /* Atualiza os brilhos mínimo e máximo da imagem */
     findLowerHigher(out);
@@ -64,14 +62,12 @@ ImagePGM *correlate(ImagePGM *img, Kernel *k) {
 /* Função de ativação
  * (considera apenas os valores não negativos de brilho)
  *
- * img: imagem a ser ativada */
-void activationFunction(ImagePGM *img) {
-    int i;
-
-    /* Percorre a imagem zerando os valores negativos de brilho */
-    for(i = 0; i < img->numEls; i++) {
-        if(img->vals[i] < 0) {
-            img->vals[i] = 0;
-        }
+ * val: valor de brilho considerado */
+double activationFunction(double val) {
+    if(val < 0) {
+        return 0;
+    }
+    else {
+        return val;
     }
 }

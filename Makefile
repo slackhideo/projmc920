@@ -6,4 +6,4 @@ test:
 
 .PHONY: clean
 clean:
-	cd src; $(MAKE) clean; cd ../tests; $(MAKE) clean
+	rm -f deeplearning; cd src; $(MAKE) clean; cd ../tests; $(MAKE) clean
