@@ -22,7 +22,7 @@ AdjRel *newAdjRel(int n) {
 
 /* Apaga uma relação de adjacência
  *
- * ar: relação de adjacência */
+ * ar: relação de adjacência a ser apagada */
 void delAdjRel(AdjRel **ar) {
     AdjRel *tmp;
 

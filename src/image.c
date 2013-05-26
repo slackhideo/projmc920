@@ -8,7 +8,11 @@
 #include <string.h>
 #include "image.h"
 
-/* Cria uma nova imagem PGM */
+/* Cria uma nova imagem PGM
+ *
+ * width:  largura da nova imagem
+ * height: altura da nova imagem
+ * depth:  número de bandas (profundidade) da nova imagem */
 ImagePGM *newImage(int width, int height, int depth) {
     ImagePGM *new;
     
@@ -29,7 +33,9 @@ ImagePGM *newImage(int width, int height, int depth) {
 }
 
 
-/* Apaga uma imagem PGM */
+/* Apaga uma imagem PGM
+ *
+ * img: imagem a ser apagada */
 void delImage(ImagePGM **img) {
     ImagePGM *tmp;
 
@@ -45,7 +51,9 @@ void delImage(ImagePGM **img) {
 }
 
 
-/* Lê uma imagem PGM */
+/* Lê uma imagem PGM
+ *
+ * path: caminho do arquivo de imagem */
 ImagePGM *readImage(char *path) {
     char magicNumber[5], buffer[256];
     uchar *vals;
@@ -146,7 +154,9 @@ ImagePGM *readImage(char *path) {
 }
 
 
-/* Escreve uma imagem PGM */
+/* Escreve uma imagem PGM
+ *
+ * path: caminho onde será salva a imagem */
 void writeImage(ImagePGM *img, char *path) {
     FILE *fp;
     int i, j;
@@ -175,7 +185,9 @@ void writeImage(ImagePGM *img, char *path) {
 }
 
 
-/* Encontra o menor e o maior valor de brilho da imagem */
+/* Encontra o menor e o maior valor de brilho da imagem
+ *
+ * img: imagem de interesse */
 void findLowerHigher(ImagePGM *img) {
     double lower = INT_MAX, higher = 0;
     int i;

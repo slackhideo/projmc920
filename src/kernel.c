@@ -35,7 +35,7 @@ Kernel *newKernel(int depth, AdjRel *ar) {
 
 /* Apaga um kernel
  *
- * k: kernel */
+ * k: kernel a ser apagado */
 void delKernel(Kernel **k) {
     Kernel *tmp;
     int i;

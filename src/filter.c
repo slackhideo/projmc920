@@ -51,8 +51,27 @@ ImagePGM *correlate(ImagePGM *img, Kernel *k) {
         }
     }
 
+    /* Invoca a função de ativação */
+    activationFunction(out);
+
     /* Atualiza os brilhos mínimo e máximo da imagem */
     findLowerHigher(out);
 
     return out;
+}
+
+
+/* Função de ativação
+ * (considera apenas os valores não negativos de brilho)
+ *
+ * img: imagem a ser ativada */
+void activationFunction(ImagePGM *img) {
+    int i;
+
+    /* Percorre a imagem zerando os valores negativos de brilho */
+    for(i = 0; i < img->numEls; i++) {
+        if(img->vals[i] < 0) {
+            img->vals[i] = 0;
+        }
+    }
 }

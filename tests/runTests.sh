@@ -43,4 +43,4 @@ results
 # Teste 5 (kernels aleatórios)
 echo "* Teste 5: Checar randKernels_out!"
 rm -f randKernels_out
-./testRandKernels > randKernels_out
+./testRandKernels &> randKernels_out
