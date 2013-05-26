@@ -58,11 +58,11 @@ ImagePGM *normalization(ImagePGM *img, AdjRel *ar){
 		    
 		}
 		val = sqrt(val);
-//printf("val: %lf\n", val);
+
 	    /*Este laço adiciona os valores dos spels na lista que será alocada na imagem de saída*/
 	    for(zp = 0; zp < imgLayers; zp++){
 		p = xp + yp*imgX + zp*imgX*imgY;
-printf("valor: %lf\n", img->vals[p]/val);		
+
 		/* Coloca o valor do brilho na imagem */
 		out->vals[p] = img->vals[p]/val;
 	    }
