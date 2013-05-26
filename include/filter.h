@@ -7,6 +7,6 @@
 ImagePGM *correlate(ImagePGM *img, Kernel *k);
 
 /* Função de ativação */
-void activationFunction(ImagePGM *img);
+double activationFunction(double val);
 
 #endif /* __FILTER_H__ */
