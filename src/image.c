@@ -130,7 +130,7 @@ ImagePGM *readImage(char *path) {
 
         /* Passa os valores dos brilhos dos pixels para a estrutura da imagem */
         for(i = 0; i < n; i++) {
-            img->vals[i] = (int)vals[i];
+            img->vals[i] = (double)vals[i];
 
             /* Verifica se é o menor ou maior valor */
             if(img->vals[i] < lower) {
