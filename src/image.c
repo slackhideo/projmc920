@@ -228,4 +228,9 @@ void addNewLayer(ImagePGM *img, int addLayers, double *vals) {
         j = img->depth * img->numEls + i;
         img->vals[j] = vals[i];
     }
+    
+    /* Atualiza a profundidade da imagem */
+    img->depth = img->depth + addLayers;
+
+    return;
 }
