@@ -59,3 +59,9 @@ rm -f flower_out_pooling_norm2.pgm
 echo "* Teste 7: Testando normalização:"
 rm -f flower_out_normalization.pgm
 ./testNormalization
+
+# Teste 8 (kernels aleatórios 2)
+echo "* Teste 8: Testando... Cheque o arquivo randKernels_out2 para conferir 
+o resultado do teste!"
+rm -f randKernels_out2
+./testRandKernels2 > randKernels_out2
