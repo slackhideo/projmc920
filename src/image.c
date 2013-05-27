@@ -248,7 +248,7 @@ void addNewLayer(ImagePGM *img, int addLayers, double *vals) {
  * path: caminho onde será salvo o vetor de atributos */
 void writeAttribVector(ImagePGM *img, char *path) {
     FILE *fp;
-    int i, j;
+    int i;
 
     /* Abre o arquivo para escrita */
     fp = fopen(path, "wb");

@@ -13,7 +13,7 @@ results() {
 echo -n "* Teste 1: "
 rm -f flower_out.pgm
 ./testReadWrite
-diff flower_check.pgm flower_out.pgm &> /dev/null
+diff -q flower_check.pgm flower_out.pgm &> /dev/null
 results
 
 
@@ -21,7 +21,7 @@ results
 echo -n "* Teste 2: "
 rm -f adjRel_out
 ./testAdjRel > adjRel_out
-diff adjRel_check adjRel_out &> /dev/null
+diff -q adjRel_check adjRel_out &> /dev/null
 results
 
 
@@ -29,7 +29,7 @@ results
 echo -n "* Teste 3: "
 rm -f kernel_out
 ./testKernel > kernel_out
-diff kernel_check kernel_out &> /dev/null
+diff -q kernel_check kernel_out &> /dev/null
 results
 
 
@@ -37,7 +37,7 @@ results
 echo -n "* Teste 4: "
 rm -f filter_out.pgm
 ./testFilter
-diff filter_check.pgm filter_out.pgm &> /dev/null
+diff -q filter_check.pgm filter_out.pgm &> /dev/null
 results
 
 # Teste 5 (kernels aleatórios)
