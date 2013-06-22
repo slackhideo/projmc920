@@ -50,8 +50,9 @@ testRandKernels2: testRandKernels2.c
 .PHONY: clean
 clean:
 	rm -f testReadWrite testAdjRel testKernel testFilter testRandKernels \
-			poolingTest testNormalization
+			poolingTest testNormalization testRandKernels2
 	rm -f flower_out.pgm adjRel_out	kernel_out filter_out.pgm *~ \
-			randKernels_out flower_out_pooling_max.pgm \
+			randKernels_out randKernels_out2 flower_out_pooling_max.pgm \
 			flower_out_pooling_mean.pgm flower_out_pooling_min.pgm \
-			flower_out_pooling_norm2.pgm flower_out_normalization.pgm
+			flower_out_pooling_norm2.pgm flower_out_normalization.pgm \
+			randKernels.bin
