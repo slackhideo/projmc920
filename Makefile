@@ -5,7 +5,7 @@ test:
 	cd tests; $(MAKE)
 
 run:
-    ./deeplearning
+	./deeplearning
 
 .PHONY: clean
 clean:
