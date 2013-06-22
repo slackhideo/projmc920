@@ -21,9 +21,13 @@ int main(int argc, char *argv[]) {
     int parray[N_LEVELS+1];
     int i, j, k;
 
-    if(argc < 3) {
-        printf("Erro! Uso: deeplearning <imagem> <gerar_kernels?>\n");
+    if(argc < 4) {
+        printf("Erro! Uso: deeplearning <imagem> <gerar_kernels?> \
+<arquivo_de_kernels>\n");
         printf("<gerar_kernels?>: 0 não gera, 1 gera\n");
+        printf("<arquivo_de_kernels>: se <gerar_kernels?> for 0, é o arquivo \
+de onde serão lidos os kernels; se <gerar_kernels?> for 1, é o arquivo onde \
+serão salvos os kernels\n");
         exit(EXIT_FAILURE);
     }
 
@@ -55,8 +59,16 @@ int main(int argc, char *argv[]) {
         ar = arlist[i];
 
         /* Gera os kernels (neurônios) aleatoriamente para o nível atual */
-        if(atoi (argv[2]) == 1) {
-            karray = randKernelsMemory(parray[i+1], parray[i], ar);
+        if(atoi (argv[2]) == 0) {
+            karray = readKernelsBinary(argv[3]);
+        }
+        else if(atoi (argv[2]) == 1) {
+            randKernelsFile(parray[i+1], parray[i], ar, argv[3]);
+            karray = readKernelsBinary(argv[3]);
+        }
+        else {
+            printf("Erro! Parâmetro <gerar_kernels?> inválido\n");
+            exit(EXIT_FAILURE);
         }
 
         /* Cria imagem para armazenar o resultado das filtragens */
