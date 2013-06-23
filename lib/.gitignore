@@ -1,6 +1,9 @@
 # Object files
 *.o
 
+# Temporary files
+*.swp
+
 # Libraries
 *.lib
 *.a

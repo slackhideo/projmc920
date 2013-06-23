@@ -251,7 +251,7 @@ void writeAttribVector(ImagePGM *img, char *path) {
     int i;
 
     /* Abre o arquivo para escrita */
-    fp = fopen(path, "wb");
+    fp = fopen(path, "w");
     if(fp == NULL) {
         errorMsg(OPEN, "writeAttribVector");
     }

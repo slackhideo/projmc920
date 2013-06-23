@@ -59,12 +59,22 @@ ImagePGM *normalization(ImagePGM *img, AdjRel *ar){
 		}
 		val = sqrt(val);
 
-	    /*Este laço adiciona os valores dos spels na lista que será alocada na imagem de saída*/
+	    /* Este laço adiciona os valores dos spels na lista que será alocada na
+         * imagem de saída */
 	    for(zp = 0; zp < imgLayers; zp++){
-		p = xp + yp*imgX + zp*imgX*imgY;
+            p = xp + yp*imgX + zp*imgX*imgY;
 
-		/* Coloca o valor do brilho na imagem */
-		out->vals[p] = img->vals[p]/val;
+            /* Se o denominador for zero, faz valor do brilho de saída receber
+             * o valor do brilho de entrada, evitando problemas de 'nan' e
+             * 'inf' */
+            if(val == 0) {
+                out->vals[p] = img->vals[p];
+            }
+
+            /* Coloca o valor do brilho na imagem */
+            else {
+                out->vals[p] = img->vals[p]/val;
+            }
 	    }
 
 
