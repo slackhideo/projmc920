@@ -33,9 +33,11 @@ ImagePGM *pooling(ImagePGM *img, int strideX, int strideY, AdjRel *ar, double (*
     int imgOutLayers = img->depth; /*tamanho z da imagem de saída*/
     
     int i; /*variável auxiliar para 'for' de adjacências*/
+    
+    char * imgClass = img->imgClass; /*classe da imagem*/
 
     /* Cria imagem de saída */
-    out = newImage(imgOutX, imgOutY, imgOutLayers);
+    out = newImage(imgOutX, imgOutY, imgOutLayers, imgClass);
 
     /* Aplica pooling na imagem original e coloca o valor na imagem de saída */
     for(zp = 0; zp < imgOutLayers; zp++){

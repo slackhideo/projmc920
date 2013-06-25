@@ -19,9 +19,10 @@ ImagePGM *correlate(ImagePGM *img, Kernel *k) {
     int q, xq, yq;
     int i, j;
     double val;
+    char * imgClass = img->imgClass;
 
     /* Cria imagem de saída */
-    out = newImage(img->width, img->height, 1);
+    out = newImage(img->width, img->height, 1, imgClass);
 
     /* Percorre a imagem com o kernel */
     for(yp = 0; yp < img->height; yp++) {

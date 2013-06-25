@@ -17,6 +17,7 @@ typedef struct {
     int height;
     int depth;
     int numEls;
+    char *imgClass;
     double *vals;
     double lower;
     double higher;
@@ -26,7 +27,7 @@ typedef struct {
 /* Funções que operam com imagens PGM */
 
 /* Função que cria uma nova imagem */
-ImagePGM *newImage(int width, int height, int depth);
+ImagePGM *newImage(int width, int height, int depth, char *imgClass);
 
 /* Função que apaga uma imagem */
 void delImage(ImagePGM **img);

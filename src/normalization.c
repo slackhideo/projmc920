@@ -24,11 +24,12 @@ ImagePGM *normalization(ImagePGM *img, AdjRel *ar){
     int imgX = img->width; /*tamanho x da imagem */
     int imgY = img->height; /*tamanho y da imagem */
     int imgLayers = img->depth; /*tamanho z (número de bandas/layers) da imagem */
+    char * imgClass = img->imgClass; /*classe da imagem*/
     
     int i; /*variável auxiliar para 'for' de adjacências*/
 
     /* Cria imagem de saída */
-    out = newImage(imgX, imgY, imgLayers);
+    out = newImage(imgX, imgY, imgLayers, imgClass);
 
     /* Aplica pooling na imagem original e coloca o valor na imagem de saída */
     for(yp = 0; yp < imgY; yp++) {

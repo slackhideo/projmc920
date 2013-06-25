@@ -13,7 +13,7 @@
  * width:  largura da nova imagem
  * height: altura da nova imagem
  * depth:  número de bandas (profundidade) da nova imagem */
-ImagePGM *newImage(int width, int height, int depth) {
+ImagePGM *newImage(int width, int height, int depth, char *imgClass) {
     ImagePGM *new;
     
     new = palloc(1, sizeof(ImagePGM), false, "newImage");
@@ -23,6 +23,7 @@ ImagePGM *newImage(int width, int height, int depth) {
     new->height = height;
     new->depth = depth;
     new->numEls = width * height;
+    new->imgClass = imgClass;
     new->vals = palloc(depth * width * height, sizeof(double), false,
             "newImage");
 
@@ -45,9 +46,28 @@ void delImage(ImagePGM **img) {
         if(tmp->vals != NULL) {
             free(tmp->vals);
         }
+        if(tmp->imgClass != NULL) {
+            free(tmp->imgClass);
+        }
         free(tmp);
         *img = NULL;
     }
+}
+
+
+/* Extrai a classe de uma imagem a partir de seu caminho
+ * 
+ * path: caminho do arquivo de imagem */
+char * getClass(char *path){
+  
+  /*Estou usando o fato que a base do Falcao é padronizada 
+   *da seguinte forma "classeImg_XXX.EXT", então, eliminando 
+   * "_XXX.EXT", temos a classe da imagem */
+  
+  int sizeOfChar = strlen(path)-strlen("_XXX.EXT");
+  char * newClass = (char *) malloc (sizeof(char)*(sizeOfChar+1));
+  
+  return strncpy(newClass, path, sizeOfChar);
 }
 
 
@@ -82,7 +102,7 @@ ImagePGM *readImage(char *path) {
         fgets(buffer, 255, fp);
 
         /* Cria uma nova imagem na representação interna */
-        img = newImage(width, height, 1);
+        img = newImage(width, height, 1, getClass(path));
 
         /* Lê os brilhos dos pixels da imagem */
         n = width * height;
@@ -126,7 +146,7 @@ ImagePGM *readImage(char *path) {
         fclose(fp);
 
         /* Cria uma nova imagem na representação interna */
-        img = newImage(width, height, 1);
+        img = newImage(width, height, 1, getClass(path));
 
         /* Passa os valores dos brilhos dos pixels para a estrutura da imagem */
         for(i = 0; i < n; i++) {

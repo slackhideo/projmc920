@@ -20,6 +20,7 @@ int main(int argc, char *argv[]) {
     Kernel **karray;
     int parray[N_LEVELS+1];
     int i, j, k;
+    char * imgClass;
 
     if(argc < 4) {
         printf("Erro! Uso: deeplearning <imagem> <gerar_kernels?> \
@@ -46,7 +47,9 @@ serão salvos os kernels\n");
 
     /* Início de L0 */
     img = readImage(argv[1]);
-
+    
+    imgClass = img->imgClass;
+    
     ar = arlist[0];
 
     in = normalization(img, ar);
@@ -72,7 +75,7 @@ serão salvos os kernels\n");
         }
 
         /* Cria imagem para armazenar o resultado das filtragens */
-        imgFilter = newImage(in->width, in->height, parray[i+1]);
+        imgFilter = newImage(in->width, in->height, parray[i+1], imgClass);
 
         /* Processo de filtragem */
         for(j = 0; j < parray[i+1]; j++) {
