@@ -22,17 +22,27 @@ int main(int argc, char *argv[]) {
     int i, j, k;
     char * imgClass;
     
-    if(argc < 4) {
-        printf("Erro! Uso: deeplearning <imagem> <gerar_kernels?> \
-<arquivo_de_kernels> <vetor_de_atributos>\n");
-        printf("<gerar_kernels?>: 0 não gera, 1 gera\n");
+    /* Interface com o usuário */
+    if(argv[1] != NULL && strcmp(argv[1], "--help") == 0) {
+        printf("Uso: deeplearning <imagem> <gerar_kernels?> \
+<arquivo_de_kernels> <vetor_de_atributos>\n\n");
+        printf("<imagem>: imagem de entrada\n\n");
+        printf("<gerar_kernels?>: 0 não gera, 1 gera uma nova base de kernels \
+aleatórios\n\n");
         printf("<arquivo_de_kernels>: se <gerar_kernels?> for 0, é o arquivo \
 de onde serão lidos os kernels; se <gerar_kernels?> for 1, é o arquivo onde \
-serão salvos os kernels\n");
-        printf("<vetor_de_atributos>: arquivo de saída .csv, contendo o \
+serão salvos os kernels\n\n");
+        printf("<vetor_de_atributos>: arquivo de saída (CSV), contendo o \
 vetor de características da imagem de entrada\n");
+        exit(EXIT_SUCCESS);
+    }
+    else if(argc < 5) {
+        printf("Erro! Uso: deeplearning <imagem> <gerar_kernels?> \
+<arquivo_de_kernels> <vetor_de_atributos>\n");
+        printf("Para mais informações, execute `deeplearning --help'\n");
         exit(EXIT_FAILURE);
     }
+
 
     /* Vetor de parâmetros */
     parray[0] = L1;
@@ -100,7 +110,7 @@ vetor de características da imagem de entrada\n");
     }
 
     /* Salva o vetor de atributos resultante em uma pasta separada. */
-    writeAttribVector(imgNorm, argv[4]);
+    writeAttribVector(imgNorm, strcat(argv[4], ".csv"));
 
     return EXIT_SUCCESS;
 }

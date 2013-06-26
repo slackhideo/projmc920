@@ -7,6 +7,7 @@
 EXEC=deeplearning
 TIME=/bin/time
 IMG_BASE_DIR=../projeto1s2013/faces_pubfigs
+CSV_BASE_DIR=data
 KERNELS_BASE=kernels
 CLASS_START=001
 CLASS_END=010
@@ -27,6 +28,6 @@ for i in $(seq -w ${CLASS_START} ${CLASS_END}); do
     for j in $(seq -w ${IMG_START} ${IMG_END}); do
         echo -n "Executando para a imagem ${j} da classe ${i}: "
         ${TIME} -f '%es' ./${EXEC} ${IMG_BASE_DIR}/${i}_${j}.pgm 0 \
-            ${KERNELS_BASE} data/vector_${i}_${j}.csv
+            ${KERNELS_BASE} ${CSV_BASE_DIR}/vector_${i}_${j}.csv
     done
 done

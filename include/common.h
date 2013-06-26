@@ -9,6 +9,7 @@
 #include <locale.h>
 #include <time.h>
 #include <math.h>
+#include <string.h>
 
 /* Deixando o uso de gettext mais prático */
 #define _(STRING) gettext(STRING)
