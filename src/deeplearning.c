@@ -5,9 +5,9 @@
 /* Parâmetros */
 #define N_LEVELS 3 /* Número de níveis de operações */
 #define L1 1
-#define L2 64
-#define L3 128
-#define L4 256
+#define L2 16 //64
+#define L3 32 //128
+#define L4 64 //256
 
 #define STRIDEX 2
 #define STRIDEY 2
@@ -98,7 +98,7 @@ serão salvos os kernels\n");
     }
 
     /* Salva o vetor de atributos resultante */
-    writeAttribVector(imgNorm, "vector.out");
+    writeAttribVector(imgNorm, "vector.csv");
 
     return EXIT_SUCCESS;
 }

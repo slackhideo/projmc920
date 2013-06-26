@@ -276,10 +276,17 @@ void writeAttribVector(ImagePGM *img, char *path) {
         errorMsg(OPEN, "writeAttribVector");
     }
 
+    /* Escreve o rótulo do vetor de atributos no arquivo */
+    for(i = 0; i < img->depth * img->numEls; i++) {
+        fprintf(fp, "%d,", i);
+    }
+    fprintf(fp, "c\n");
+
     /* Escreve o vetor de atributos no arquivo */
     for(i = 0; i < img->depth * img->numEls; i++) {
-        fprintf(fp, "%lf;", img->vals[i]);
+        fprintf(fp, "%lf,", img->vals[i]);
     }
+    fprintf(fp, "%s\n", img->imgClass);
 
     fclose(fp);
 
