@@ -5,12 +5,14 @@
 /* Parâmetros */
 #define N_LEVELS 3 /* Número de níveis de operações */
 #define L1 1
-#define L2 16 //64
-#define L3 32 //128
-#define L4 64 //256
+#define L2 32 //64
+#define L3 64 //128
+#define L4 128 //256
 
 #define STRIDEX 2
 #define STRIDEY 2
+
+#define FILENAME_LEN 20
 
 #include "projlib.h"
 
@@ -21,6 +23,7 @@ int main(int argc, char *argv[]) {
     int parray[N_LEVELS+1];
     int i, j, k;
     char * imgClass;
+    char vectorFileName[FILENAME_LEN], tmpStr[FILENAME_LEN];
 
     if(argc < 4) {
         printf("Erro! Uso: deeplearning <imagem> <gerar_kernels?> \
@@ -97,8 +100,8 @@ serão salvos os kernels\n");
         imgNorm = normalization(imgPool, ar);
     }
 
-    /* Salva o vetor de atributos resultante */
-    writeAttribVector(imgNorm, "vector.csv");
+    /* Salva o vetor de atributos resultante em uma pasta separada. */
+    writeAttribVector(imgNorm, argv[4]);
 
     return EXIT_SUCCESS;
 }
