@@ -23,15 +23,16 @@ int main(int argc, char *argv[]) {
     int parray[N_LEVELS+1];
     int i, j, k;
     char * imgClass;
-    char vectorFileName[FILENAME_LEN], tmpStr[FILENAME_LEN];
-
+    
     if(argc < 4) {
         printf("Erro! Uso: deeplearning <imagem> <gerar_kernels?> \
-<arquivo_de_kernels>\n");
+<arquivo_de_kernels> <vetor_de_atributos>\n");
         printf("<gerar_kernels?>: 0 não gera, 1 gera\n");
         printf("<arquivo_de_kernels>: se <gerar_kernels?> for 0, é o arquivo \
 de onde serão lidos os kernels; se <gerar_kernels?> for 1, é o arquivo onde \
 serão salvos os kernels\n");
+        printf("<vetor_de_atributos>: arquivo de saída .csv, contendo o \
+                vetor de características da imagem de entrada");
         exit(EXIT_FAILURE);
     }
 
