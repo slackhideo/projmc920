@@ -12,8 +12,6 @@
 #define STRIDEX 2
 #define STRIDEY 2
 
-#define FILENAME_LEN 20
-
 #include "projlib.h"
 
 int main(int argc, char *argv[]) {
@@ -32,7 +30,7 @@ int main(int argc, char *argv[]) {
 de onde serão lidos os kernels; se <gerar_kernels?> for 1, é o arquivo onde \
 serão salvos os kernels\n");
         printf("<vetor_de_atributos>: arquivo de saída .csv, contendo o \
-                vetor de características da imagem de entrada");
+vetor de características da imagem de entrada\n");
         exit(EXIT_FAILURE);
     }
 
