@@ -28,6 +28,6 @@ for i in $(seq -w ${CLASS_START} ${CLASS_END}); do
     for j in $(seq -w ${IMG_START} ${IMG_END}); do
         echo -n "Executando para a imagem ${j} da classe ${i}: "
         ${TIME} -f '%es' ./${EXEC} ${IMG_BASE_DIR}/${i}_${j}.pgm 0 \
-            ${KERNELS_BASE} ${CSV_BASE_DIR}/vector_${i}_${j}.csv
+            ${KERNELS_BASE} ${CSV_BASE_DIR}/vector_${i}_${j}
     done
 done
