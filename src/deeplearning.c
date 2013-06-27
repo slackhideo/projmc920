@@ -110,7 +110,7 @@ vetor de características da imagem de entrada\n");
     }
 
     /* Salva o vetor de atributos resultante em uma pasta separada. */
-    writeAttribVector(imgNorm, strcat(argv[4], ".csv"));
+    writeAttribVectorLibSVM(imgNorm, strcat(argv[4], ".csv"));
 
     return EXIT_SUCCESS;
 }

@@ -47,4 +47,7 @@ void addNewLayer(ImagePGM *img, int addLayers, double *vals);
 /* Função que escreve um vetor de atributos em arquivo */
 void writeAttribVector(ImagePGM *img, char *path);
 
+/* Função que escreve um vetor de atributos em arquivo no formato da LIBSVM */
+void writeAttribVectorLibSVM(ImagePGM *img, char *path);
+
 #endif /* __IMAGE_H__ */

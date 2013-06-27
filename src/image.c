@@ -292,3 +292,33 @@ void writeAttribVector(ImagePGM *img, char *path) {
 
     return;
 }
+
+
+/* Salva os brilhos de uma imagem como um vetor de atributos em arquivo no
+ * formato utilizado pela LIBSVM
+ *
+ * img:  imagem cujo vetor de atributos será escrito
+ * path: caminho onde será salvo o vetor de atributos */
+void writeAttribVectorLibSVM(ImagePGM *img, char *path) {
+    FILE *fp;
+    int i;
+
+    /* Abre o arquivo para escrita */
+    fp = fopen(path, "w");
+    if(fp == NULL) {
+        errorMsg(OPEN, "writeAttribVector");
+    }
+
+    /* Escreve a classe da imagem */
+    fprintf(fp, "%s", img->imgClass); //deve ser um inteiro
+
+    /* Escreve o vetor de atributos no arquivo */
+    for(i = 0; i < img->depth * img->numEls; i++) {
+        fprintf(fp, " %d:%lf", i+1, img->vals[i]);
+    }
+    fprintf(fp, "\n");
+
+    fclose(fp);
+
+    return;
+}
