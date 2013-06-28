@@ -3,6 +3,7 @@
  * Contém funções relacionadas a imagens
  */
 
+#define _GNU_SOURCE
 #include "common.h"
 #include <limits.h>
 #include <string.h>
@@ -10,9 +11,10 @@
 
 /* Cria uma nova imagem PGM
  *
- * width:  largura da nova imagem
- * height: altura da nova imagem
- * depth:  número de bandas (profundidade) da nova imagem */
+ * width:    largura da nova imagem
+ * height:   altura da nova imagem
+ * depth:    número de bandas (profundidade) da nova imagem
+ * imgClass: classe à qual a imagem pertence */
 ImagePGM *newImage(int width, int height, int depth, char *imgClass) {
     ImagePGM *new;
     
@@ -23,7 +25,8 @@ ImagePGM *newImage(int width, int height, int depth, char *imgClass) {
     new->height = height;
     new->depth = depth;
     new->numEls = width * height;
-    new->imgClass = imgClass;
+    new->imgClass = (char *)palloc(1, strlen(imgClass)+1, false, "newImage");
+    strcpy(new->imgClass, imgClass);
     new->vals = palloc(depth * width * height, sizeof(double), false,
             "newImage");
 
@@ -57,17 +60,18 @@ void delImage(ImagePGM **img) {
 
 /* Extrai a classe de uma imagem a partir de seu caminho
  * 
- * path: caminho do arquivo de imagem */
-char * getClass(char *path){
+ * path:  caminho do arquivo de imagem
+ * class: classe da imagem, que é obtida */
+void getClass(char *path, char *class){
   
-  /*Estou usando o fato que a base do Falcao é padronizada 
-   *da seguinte forma "classeImg_XXX.EXT", então, eliminando 
-   * "_XXX.EXT", temos a classe da imagem */
+  /* Supõe-se que a base é padronizada da seguinte forma "classeImg_XXX.EXT".
+   * Então, eliminando-se "_XXX.EXT", temos a classe da imagem */
   
-  int sizeOfChar = strlen(path)-strlen("_XXX.EXT");
-  char * newClass = (char *) malloc (sizeof(char)*(sizeOfChar+1));
-  
-  return strncpy(newClass, path, sizeOfChar);
+    char *imgFile = basename(path);
+    int sizeOfChar = strlen(imgFile)-strlen("_XXX.EXT");
+
+    strncpy(class, imgFile, sizeOfChar);
+    class[sizeOfChar] = '\0';
 }
 
 
@@ -76,6 +80,7 @@ char * getClass(char *path){
  * path: caminho do arquivo de imagem */
 ImagePGM *readImage(char *path) {
     char magicNumber[5], buffer[256];
+    char imgClass[99];
     uchar *vals;
     int width, height, i, n, lower = INT_MAX, higher = 0;
     FILE *fp;
@@ -101,8 +106,11 @@ ImagePGM *readImage(char *path) {
         sscanf(buffer, "%d %d\n", &width, &height);
         fgets(buffer, 255, fp);
 
+        /* Obtém a classe da imagem */
+        getClass(path, imgClass);
+
         /* Cria uma nova imagem na representação interna */
-        img = newImage(width, height, 1, getClass(path));
+        img = newImage(width, height, 1, imgClass);
 
         /* Lê os brilhos dos pixels da imagem */
         n = width * height;
@@ -145,8 +153,11 @@ ImagePGM *readImage(char *path) {
 
         fclose(fp);
 
+        /* Obtém a classe da imagem */
+        getClass(path, imgClass);
+
         /* Cria uma nova imagem na representação interna */
-        img = newImage(width, height, 1, getClass(path));
+        img = newImage(width, height, 1, imgClass);
 
         /* Passa os valores dos brilhos dos pixels para a estrutura da imagem */
         for(i = 0; i < n; i++) {

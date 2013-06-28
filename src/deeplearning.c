@@ -20,7 +20,7 @@ int main(int argc, char *argv[]) {
     Kernel **karray;
     int parray[N_LEVELS+1];
     int i, j, k;
-    char * imgClass;
+    char *imgClass;
     
     /* Interface com o usuário */
     if(argv[1] != NULL && strcmp(argv[1], "--help") == 0) {

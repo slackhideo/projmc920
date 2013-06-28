@@ -5,13 +5,14 @@
 
 /* Estrutura para imagens PGM (níveis de cinza)
  *
- * width:  largura da imagem
- * height: altura da imagem
- * depth:  número de bandas (profundidade)
- * numEls: quantidade de pixels por banda
- * vals:   vetor de brilhos da imagem
- * lower:  menor brilho dos pixels
- * higher: maior brilho dos pixels */
+ * width:    largura da imagem
+ * height:   altura da imagem
+ * depth:    número de bandas (profundidade)
+ * numEls:   quantidade de pixels por banda
+ * imgClass: classe da imagem
+ * vals:     vetor de brilhos da imagem
+ * lower:    menor brilho dos pixels
+ * higher:   maior brilho dos pixels */
 typedef struct {
     int width;
     int height;
@@ -31,6 +32,9 @@ ImagePGM *newImage(int width, int height, int depth, char *imgClass);
 
 /* Função que apaga uma imagem */
 void delImage(ImagePGM **img);
+
+/* Função que extrai a classe de uma imagem a partir de seu caminho */
+void getClass(char *path, char *class);
 
 /* Função que lê uma imagem */
 ImagePGM *readImage(char *imgPath);
